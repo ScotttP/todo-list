@@ -7,7 +7,43 @@
     <title>ToDo List</title>
 </head>
 <body>
-    
+    <div class="appContainer">
+        <header>
+            <h2>To-Do List</h2>
+        </header>
+        <div class="contentContainer">
+            <aside>
+                <h2>Projects</h2>
+                <div class="sideBarContainer">
+                    <ul class="projectList">
+                        <li id="project1">Programming</li>
+                        <li id="project2">Reading</li>
+                        <li id="project3">Eating</li>
+                    </ul>
+                    <input type ="text" placeholder="Add a project...">
+                </div>
+            </aside>
+            <main>
+                <h2>To-Do Items</h2>
+                <div class="listTasksContainer">
+                    <ul class="todoTasks">
+                        <li class="todoItem" data-toDoId="todo1">
+                            <input type ="checkbox" id= "checkBox"></input>
+                            <div id="todoName">Javascript</div>
+                            <div id="dueDate"> 5/20/2020</div>
+                            <button type="reset" id="deleteButton">Delete</button>
+                        </li>
+                        <li class="todoItem" data-toDoId="todo2">
+                            <input type ="checkbox" id= "checkBox"></input>
+                            <div id="todoName">Python</div>
+                            <div id="dueDate"> 5/23/2020</div>
+                            <button type="reset" id="deleteButton">Delete</button>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>  
 </body>
 <script src="main.js"></script>
 </html>
