@@ -15,6 +15,7 @@
     flex-grow: 1;
 }
     aside{
+        min-width: 100px;
         width: 20%;
         height: 100%;
         border: 1px solid red;
@@ -41,6 +42,20 @@
         .projectList > li {
             list-style-type: none;
         }
+    .addProjectContainer {
+        display: flex;
+        align-items: center;
+    }    
+        @media (max-width: 955px){
+            #addProjectForm{
+                width: 80px;
+                margin: 5%;
+            }
+        }
+        #addprojectForm{
+            width: 120px;
+        }
+
 
     main{
         display: flex;
@@ -55,14 +70,29 @@
     main > h3 {
         text-align: center;
     }
+
+    .addTaskContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem 0 1rem 0;
+    }    
+
     .listTasksContainer{
         width: 100%;
+        
     }
         .todoItem{
             display: flex;
-            justify-content: space-evenly;
             align-items: center;
             list-style-type: none;
         }
+
+        td{
+            width: 20vw;
+        }
+        
+
+
 
     
