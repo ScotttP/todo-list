@@ -69,14 +69,7 @@
     }
     main > h3 {
         text-align: center;
-    }
-
-    .addTaskContainer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 1rem 0 1rem 0;
-    }    
+    }  
 
     .listTasksContainer{
         width: 100%;
@@ -89,8 +82,26 @@
         }
 
         td{
-            width: 20vw;
+            width: 15vw;
         }
+
+        .addTaskContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0 1rem 0;
+        }  
+
+        .addClick:hover{
+            cursor: pointer;
+        }
+        .taskForm {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         
 
 
