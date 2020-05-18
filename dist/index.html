@@ -16,12 +16,10 @@
                 <h2>Projects</h2>
                 <div class="sideBarContainer">
                     <ul class="projectList">
-                        <li id="project1">Programming</li>
-                        <li id="project2">Reading</li>
-                        <li id="project3">Eating</li>
+                        <!--Add projects here-->
                     </ul>
                     <div class="addProjectContainer">
-                        <span class ="addClick">+</span>
+                        <span class ="addClick" id="addProjectButton">+</span>
                         <input id ="addProjectForm" type ="text" placeholder="Add a project...">
                     </div>
                 </div>
@@ -31,44 +29,38 @@
                 <div class="listTasksContainer">
                     <div class="addTaskContainer">
                         <button class="addClick"id ="addTaskButton">+ Add Task</button>
-                        <div class="addTaskWindow">
-                            <form class="taskForm">
-                                <label>Task Name:</label>
-                                    <input id="taskName" type="text">
-                                <label>Description:</label>
-                                    <input id="taskDescription" type="text">
-                                <label>Due Date</label>
-                                    <input id="dueDate" type="date">
-                                <select class="priority">
-                                    <option id ="low" value="low">Low</option>
-                                    <option id ="medium" value="medium">Medium</option>
-                                    <option id ="high" value="high">High</option>
-                                </select>
-                                <label>Description</label>
-                                <textarea id="notes" type="text"></textarea>
-                                <button id="submit">Submit</button>
-                            </form>
-                        </div>
                     </div>
                     <table class="todoTasks">
-                        <tr class="todoItem" data-toDoId="todo1">
-                            <td><input type ="checkbox" id= "checkBox"></input></td>
-                            <td><div id="todoName">Javascript</div></td>
-                            <td><div id="dueDate">5/20/2020</div></td>
-                            <td><div id="priority">Low</div></td>
-                            <td><button type="reset" id="deleteButton">Delete</button></td>
-                        </tr>
-                        <tr class="todoItem" data-toDoId="todo2">
-                            <td><input type ="checkbox" id= "checkBox"></input></td>
-                            <td><div id="todoName">Python</div></td>
-                            <td><div id="dueDate"> 5/23/2020</div></td>
-                            <td><div id="priority">Medium</div></td>
-                            <td><button type="reset" id="deleteButton">Delete</button></td>
-                        </tr>
+                        <!--add todo tasks here-->
                     </table>
                 </div>
+                <div id="addTaskWindowContainer">
+                    
+                    <div id="taskWindow">
+                        <span id="cancel">x</span>
+                        <form id="tasksForm">
+                            <label>Task Name:</label>
+                                <input id="taskName" type="text">
+                            <label>Description:</label>
+                                <input id="taskDescription" type="text">
+                            <label>Due Date:</label>
+                                <input id="dueDate" type="date">
+                            <label>Priority:</label>
+                            <select class="priority">
+                                <option id ="low" value="low">Low</option>
+                                <option id ="medium" value="medium">Medium</option>
+                                <option id ="high" value="high">High</option>
+                            </select>
+                            <label>Notes:</label>
+                            <textarea id="notes" type="text"></textarea>
+                            <button id="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </main>
+            
         </div>
+        
     </div>  
 </body>
 <script src="main.js"></script>
