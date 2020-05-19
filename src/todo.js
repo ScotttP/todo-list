@@ -1,4 +1,4 @@
-const todoPopUpWindow = () => {
+const todoPopUpWindow = () => { //this should go into display.
     const windowDisplay = document.querySelector('#addTaskButton');
     const cancelDisplay = document.querySelector('#cancel');
     const submitTask = document.querySelector('#submit');
@@ -11,41 +11,22 @@ const todoPopUpWindow = () => {
         document.getElementById('addTaskWindowContainer').style.display = 'none';
     })
     submitTask.addEventListener('click', () => {
-        let userTasks = new Tasks (name.value,description.value,dueDate.value,priority.value,notes.value)
-        let projectList = []
-        addTasksToArray(userTasks);
-        console.log(projectList)
+        let stuff = new Tasks (name)
+        console.log(stuff)
     })
-
 }
-const todoProject = () => {
-    
-    const addProjectButton = document.querySelector('#addProjectButton')
-
-    addProjectButton.addEventListener('click', () => {
-      
-    })
-
-
-}
-
-
-    
 class Tasks {
 
-    constructor (name,description,dueDate,priority,notes){
-        this.name = name
-        this.description = description
-        this.dueDate = dueDate
-        this.priority = priority
-        this.notes = notes
+    constructor (){
+        this.name = document.getElementById('taskName').value;
+        // this.description = description
+        // this.project = project
+        // this.dueDate = dueDate
+        // this.priority = priority
+        // this.notes = notes
     }
-    addTasksToArray (userTasks) {
 
-
-        projectList.push(userTasks)
-    }
 }
 
 
-export {todoPopUpWindow,Tasks,todoProject}
+export {todoPopUpWindow}
