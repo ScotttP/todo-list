@@ -9,14 +9,6 @@ class Tasks {
         this.taskNotes = taskNotes
     }
 
-    addToTaskList (taskValues) {
-       let myList = [];
-        myList.push(taskValues);
-        console.log(myList.length)
-        console.log(myList)
-    }
-    
- 
     
 
 }
