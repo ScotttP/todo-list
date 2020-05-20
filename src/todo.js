@@ -10,14 +10,18 @@ class Tasks {
     }
 
     test () {
-        console.log(taskValues.priority.value)
+       
     }
+    
  
     
 
 }
 
-let taskValues = new Tasks (taskName,projectFolder, taskDescription, dueDate, priority, taskNotes)
+
+let taskValues = new Tasks (taskName,projectFolder,taskDescription, dueDate, priority, taskNotes)
+        
+
 
 
 export {taskValues}
