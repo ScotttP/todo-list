@@ -1,6 +1,4 @@
-import { taskValues } from "./todo.js"
-
-let myList = [];
+import { Tasks } from "./todo.js"
 
 const todoPopUpWindow = () => {
     const windowDisplay = document.querySelector('#addTaskButton');
@@ -15,27 +13,12 @@ const todoPopUpWindow = () => {
         document.getElementById('addTaskWindowContainer').style.display = 'none';
     })
     submitTask.addEventListener('click', () => {
-        projectDisplay();
-        
+
+        let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+        taskValues.addToTaskList(taskValues);
     })
     
 }
 
-// const tasksDisplay = () => {
-//     //todo item from page load module will be available here.
-    
-//         // const todoItem = 
-//         // document.createElement('tr');
-//         // todoItem.setAttribute('class', 'todoItem');
-//         // todoItem.setAttribute('data', 'todoIdNum');
-//         // todoItem.querySelector('.todoItem');
-
-
-
-// }
-
-function projectDisplay () {
-    console.log(taskValues.taskName.value)
-}
 
 export{todoPopUpWindow}

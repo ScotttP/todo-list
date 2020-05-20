@@ -81,6 +81,7 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
@@ -103,6 +104,3 @@ typings/
 .tern-port
 
 .DS_Store
-
-dist/index.html
-dist/main.js

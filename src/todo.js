@@ -9,19 +9,15 @@ class Tasks {
         this.taskNotes = taskNotes
     }
 
-    test () {
-       
+    addToTaskList (taskValues) {
+       let myList = [];
+        myList.push(taskValues);
+        console.log(myList.length)
+        console.log(myList)
     }
     
  
     
 
 }
-
-
-let taskValues = new Tasks (taskName,projectFolder,taskDescription, dueDate, priority, taskNotes)
-        
-
-
-
-export {taskValues}
+export {Tasks}
