@@ -1,32 +1,23 @@
-const todoPopUpWindow = () => { //this should go into display.
-    const windowDisplay = document.querySelector('#addTaskButton');
-    const cancelDisplay = document.querySelector('#cancel');
-    const submitTask = document.querySelector('#submit');
-
-    windowDisplay.addEventListener('click', () =>{
-        document.getElementById('addTaskWindowContainer').style.display = 'block';
-        
-    })
-    cancelDisplay.addEventListener('click', () =>{
-        document.getElementById('addTaskWindowContainer').style.display = 'none';
-    })
-    submitTask.addEventListener('click', () => {
-        let stuff = new Tasks (name)
-        console.log(stuff)
-    })
-}
 class Tasks {
 
-    constructor (){
-        this.name = document.getElementById('taskName').value;
-        // this.description = description
-        // this.project = project
-        // this.dueDate = dueDate
-        // this.priority = priority
-        // this.notes = notes
+    constructor (taskName,projectFolder, taskDescription, dueDate, priority, taskNotes){
+        this.taskName = taskName
+        this.projectFolder = projectFolder
+        this.taskDescription = taskDescription
+        this.dueDate = dueDate
+        this.priority = priority
+        this.taskNotes = taskNotes
     }
+
+    test () {
+        console.log(taskValues.priority.value)
+    }
+ 
+    
 
 }
 
+let taskValues = new Tasks (taskName,projectFolder, taskDescription, dueDate, priority, taskNotes)
 
-export {todoPopUpWindow}
+
+export {taskValues}
