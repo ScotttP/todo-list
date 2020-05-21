@@ -21,13 +21,15 @@ const todoPopUpWindow = () => {
         taskValues.addtoTaskList(myTaskList,taskValues);
         // createToDoCard(taskValues);
         console.log(myTaskList)
+        console.log(myProjectList);
     })
 
     
     submitProject.addEventListener('click', () => {
-        let projectValues = new Projects (myTaskList);
+        let projectValues = new Projects ();
+        let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
         projectValues.addToProjectList(myProjectList,projectValues);
-        createProjectCard(projectValues)
+        //createProjectCard(projectValues)
         console.log(myProjectList);
     })
 
@@ -35,20 +37,20 @@ const todoPopUpWindow = () => {
     
 }
 
-const createProjectCard = (myProjectList) => {
-    const projectList = document.querySelector('.projectList');
+// const createProjectCard = (myProjectList) => {
+//     const projectList = document.querySelector('.projectList');
 
-    for (let projects in myProjectList){
-        let addProj = document.createElement('li');
-        addProj.setAttribute('data-projectNum', '' )
-        for (let properties in myProjectList[projects]){
-            addProj.textContent = properties[0];
-        }
+//     for (let projects in myProjectList){
+//         let addProj = document.createElement('li');
+//         addProj.setAttribute('data-projectNum', '' )
+//         for (let properties in myProjectList[projects]){
+//             addProj.textContent = properties[0];
+//         }
         
-        projectList.appendChild(addProj)
+//         projectList.appendChild(addProj)
         
-    }
-}
+//     }
+// }
 // const createToDoCard = (taskValues) => {
     
     

@@ -1,14 +1,18 @@
 class Projects {
     
-    constructor (myTasksList){
+    constructor (){
         this.projectName = document.getElementById('addProjectForm').value
-        this.taskList = myTasksList
+        
     }
     
     addToProjectList (myProjectList,projectValues){
         myProjectList.push(projectValues);
+        let projectTasks = [];
+        console.log(projectTasks)
         
     }
+    
+
 }
 let myProjectList = [];
 export {Projects, myProjectList}
