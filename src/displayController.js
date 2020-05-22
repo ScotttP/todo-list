@@ -1,7 +1,7 @@
 import { Tasks } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
 
-const todoPopUpWindow = () => {
+const taskPopUpWindow = () => {
     const windowDisplay = document.querySelector('#addTaskButton');
     const cancelDisplay = document.querySelector('#cancel');
     
@@ -11,7 +11,14 @@ const todoPopUpWindow = () => {
     cancelDisplay.addEventListener('click', () =>{
         document.getElementById('addTaskWindowContainer').style.display = 'none';
     })
+}
 
+const taskDetailsWindow = () => {
+
+}
+
+const createTaskCard = () => {
+    
 }
 
 // const createProjectCard = (myProjectList) => {
@@ -30,9 +37,7 @@ const todoPopUpWindow = () => {
 // }
 
 
-const todoView = () => {
 
-}
 
 function loadProjectListOptions (projectValues) {
     const projectFolder = document.querySelector('#projectFolder');
@@ -44,4 +49,4 @@ function loadProjectListOptions (projectValues) {
     
 }
 
-export{todoPopUpWindow,loadProjectListOptions}
+export{taskPopUpWindow,loadProjectListOptions}

@@ -1,6 +1,7 @@
 import { Tasks } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
 import {loadProjectListOptions} from "./displayController.js"
+import {taskPopUpWindow} from "./displayController.js"
 
 const events = () => {
 
@@ -11,7 +12,7 @@ submitProject.addEventListener('click', () => {
     let projectValues = new Projects ();
     projectValues.addToProjectList(projectValues)
     loadProjectListOptions(projectValues)
-    
+
 
     submitTask.addEventListener('click', () => {
         let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
