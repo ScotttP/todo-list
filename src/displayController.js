@@ -1,41 +1,38 @@
-import { Tasks,myTaskList } from "./todo.js"
-import { Projects,myProjectList } from "./projects.js"
+import { Tasks } from "./todo.js"
+import { Projects,projectList } from "./projects.js"
 
 const todoPopUpWindow = () => {
     const windowDisplay = document.querySelector('#addTaskButton');
     const cancelDisplay = document.querySelector('#cancel');
-    const submitTask = document.querySelector('#submit');
-    const submitProject = document.querySelector('#addProjectButton')
-
-
-
+    
     windowDisplay.addEventListener('click', () =>{
         document.getElementById('addTaskWindowContainer').style.display = 'block';
+        loadProjectListOptions()
         
     })
     cancelDisplay.addEventListener('click', () =>{
         document.getElementById('addTaskWindowContainer').style.display = 'none';
     })
-    submitTask.addEventListener('click', () => {
-        let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
-        taskValues.addtoTaskList(myTaskList,taskValues);
-        // createToDoCard(taskValues);
-        console.log(myTaskList)
-        console.log(myProjectList);
-    })
 
-    
-    submitProject.addEventListener('click', () => {
-        let projectValues = new Projects ();
-        let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
-        projectValues.addToProjectList(myProjectList,projectValues);
-        //createProjectCard(projectValues)
-        console.log(myProjectList);
-    })
+    function loadProjectListOptions () {
+        const projectFolder = document.querySelector('#projectFolder');
+        //addd a function here that checks to see if any of the values were duplicated.
+        for (let project in projectList){
+            let option = document.createElement('option');
+            option.value= projectList[project];
+            option.text = projectList[project];
+            projectFolder.appendChild(option)
+        
+        }
+    }
 
-    
-    
 }
+
+
+
+
+
+
 
 // const createProjectCard = (myProjectList) => {
 //     const projectList = document.querySelector('.projectList');

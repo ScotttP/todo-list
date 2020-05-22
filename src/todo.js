@@ -9,10 +9,9 @@ class Tasks {
         this.taskNotes = taskNotes
     }
 
-    addtoTaskList (myTaskList,taskValues) {
-        myTaskList.push(taskValues)
-    }
+
+   
 
 }
-let myTaskList = [];
-export {Tasks,myTaskList}
+
+export {Tasks}
