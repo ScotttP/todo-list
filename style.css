@@ -136,6 +136,16 @@
             cursor: pointer;
         }
 
+        #deleteProjButton {
+            font-size:10px;
+            margin-left: 5px;
+        }
+
+        #deleteProjButton:hover {
+            cursor: pointer;
+            color: red;
+        }
+
         
 
 

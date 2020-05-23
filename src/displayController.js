@@ -17,36 +17,41 @@ const taskDetailsWindow = () => {
 
 }
 
-const createTaskCard = () => {
+const taskLoader = () => {
     
 }
 
-// const createProjectCard = (myProjectList) => {
-//     const projectList = document.querySelector('.projectList');
+const projectLoader = (projectValues,projectList) => {
 
-//     for (let projects in myProjectList){
-//         let addProj = document.createElement('li');
-//         addProj.setAttribute('data-projectNum', '' )
-//         for (let properties in myProjectList[projects]){
-//             addProj.textContent = properties[0];
-//         }
+    function createProjectCard () {
+        const projectListDiv = document.querySelector('.projectList');
+
+        let addProj = document.createElement('li');
+        addProj.value = projectValues.projectName
+        addProj.textContent = projectValues.projectName;
+        projectListDiv.appendChild(addProj)
+
+        let deleteProjButton = document.createElement('i')
+        deleteProjButton.setAttribute('class', 'fa fa-close')
+        deleteProjButton.setAttribute('id','deleteProjButton')
+        deleteProjButton.setAttribute('value', `${projectValues.projectName}`)
+        addProj.appendChild(deleteProjButton)
+    }
+    function loadProjectListOptions (projectValues) {
+        const projectFolder = document.querySelector('#projectFolder');
+    
+        let option = document.createElement('option');
+        option.value= projectValues.projectName;
+        option.text = projectValues.projectName;
+        projectFolder.appendChild(option)
         
-//         projectList.appendChild(addProj)
-        
-//     }
-// }
-
-
-
-
-function loadProjectListOptions (projectValues) {
-    const projectFolder = document.querySelector('#projectFolder');
-
-    let option = document.createElement('option');
-    option.value= projectValues.projectName;
-    option.text = projectValues.projectName;
-    projectFolder.appendChild(option)
+    }
+    return {
+        createProjectCard,
+        loadProjectListOptions
+    }
     
 }
 
-export{taskPopUpWindow,loadProjectListOptions}
+
+export{taskPopUpWindow,projectLoader}

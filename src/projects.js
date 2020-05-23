@@ -11,6 +11,13 @@ class Projects {
         console.log(projectList)
         return projectList
     }
+
+    deleteFromProjectList (projectList){
+        let projToDelete = document.getElementById('deleteProjButton').getAttribute('value');
+        let projectToDeleteIndex = projectList.indexOf(projToDelete);
+        projectList.splice(projectToDeleteIndex,1);
+        console.log(projectList)
+    }
     
 
 }
