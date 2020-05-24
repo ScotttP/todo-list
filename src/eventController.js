@@ -14,9 +14,9 @@ submitProject.addEventListener('click', () => {
     let projectValues = new Projects ();
     projectValues.addToProjectList(projectValues)
 
-    const projectLoad = projectLoader(projectValues);
+    const projectLoad = projectLoader(projectValues,projectList);
     projectLoad.loadProjectListOptions(projectValues)
-    projectLoad.createProjectCard(projectValues,projectValues)
+    projectLoad.renderProjectCard(projectValues,projectList)
 
     submitTask.addEventListener('click', () => {
         let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
@@ -29,6 +29,7 @@ submitProject.addEventListener('click', () => {
     deleteProject.forEach(i => {
         i.addEventListener('click', () => {
             projectValues.deleteFromProjectList(projectList)
+            projectLoad.renderProjectCard(projectValues,projectList)
         })
     })
 

@@ -23,19 +23,26 @@ const taskLoader = () => {
 
 const projectLoader = (projectValues,projectList) => {
 
-    function createProjectCard () {
+    function renderProjectCard () {
         const projectListDiv = document.querySelector('.projectList');
+        let projectListIndex = 0;
+        projectListDiv.innerHTML = '';
+    
+        for (let project of projectList){
+            let addProj = document.createElement('li');
+            addProj.value = project;
+            addProj.textContent = project;
+            projectListDiv.appendChild(addProj)
 
-        let addProj = document.createElement('li');
-        addProj.value = projectValues.projectName
-        addProj.textContent = projectValues.projectName;
-        projectListDiv.appendChild(addProj)
+            let deleteProjButton = document.createElement('i')
+            deleteProjButton.setAttribute('class', 'fa fa-close')
+            deleteProjButton.setAttribute('id','deleteProjButton')
+            deleteProjButton.setAttribute('value', `${projectListIndex}`)
+            addProj.appendChild(deleteProjButton)
+            projectListIndex++
+        }
 
-        let deleteProjButton = document.createElement('i')
-        deleteProjButton.setAttribute('class', 'fa fa-close')
-        deleteProjButton.setAttribute('id','deleteProjButton')
-        deleteProjButton.setAttribute('value', `${projectValues.projectName}`)
-        addProj.appendChild(deleteProjButton)
+        
     }
     function loadProjectListOptions (projectValues) {
         const projectFolder = document.querySelector('#projectFolder');
@@ -47,7 +54,7 @@ const projectLoader = (projectValues,projectList) => {
         
     }
     return {
-        createProjectCard,
+        renderProjectCard,
         loadProjectListOptions
     }
     
