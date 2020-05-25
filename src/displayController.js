@@ -6,10 +6,10 @@ const taskPopUpWindow = () => {
     const cancelDisplay = document.querySelector('#cancel');
     
     windowDisplay.addEventListener('click', () =>{
-        document.getElementById('addTaskWindowContainer').style.display = 'block';
+        document.getElementById('addTaskWindowContainer').style.display = 'block';//displays window
     })
     cancelDisplay.addEventListener('click', () =>{
-        document.getElementById('addTaskWindowContainer').style.display = 'none';
+        document.getElementById('addTaskWindowContainer').style.display = 'none';//closes window
     })
 }
 
@@ -23,28 +23,21 @@ const taskLoader = () => {
 
 const projectLoader = (projectValues,projectList) => {
 
-    function renderProjectCard () {
+    function renderProjectCard () {//taksthe projectList array and displays the project names on the page
         const projectListDiv = document.querySelector('.projectList');
-        let projectListIndex = 0;
-        projectListDiv.innerHTML = '';
+        projectListDiv.innerHTML = '';//resets the display so all existing values aren't displayed
     
         for (let project of projectList){
             let addProj = document.createElement('li');
             addProj.value = project;
             addProj.textContent = project;
             projectListDiv.appendChild(addProj)
-
-            let deleteProjButton = document.createElement('i')
-            deleteProjButton.setAttribute('class', 'fa fa-close')
-            deleteProjButton.setAttribute('id','deleteProjButton')
-            deleteProjButton.setAttribute('value', `${projectListIndex}`)
-            addProj.appendChild(deleteProjButton)
-            projectListIndex++
+            addDeleteButtonAndListener(addProj,project)//adds the delete button and listener with delete button.
         }
 
         
     }
-    function loadProjectListOptions (projectValues) {
+    function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window
         const projectFolder = document.querySelector('#projectFolder');
     
         let option = document.createElement('option');
@@ -52,6 +45,18 @@ const projectLoader = (projectValues,projectList) => {
         option.text = projectValues.projectName;
         projectFolder.appendChild(option)
         
+    }
+    function addDeleteButtonAndListener (addProj,project) {
+        let deleteProjButton = document.createElement('i')
+        deleteProjButton.setAttribute('class', 'fa fa-close')
+        deleteProjButton.setAttribute('id','deleteProjButton')
+        deleteProjButton.setAttribute('value', project)
+        addProj.appendChild(deleteProjButton)
+
+        deleteProjButton.addEventListener('click', () => {
+            projectValues.deleteFromProjectList(projectList,addProj)//deletes from projectList array
+            renderProjectCard(projectValues,projectList)//renders the new project list
+         })
     }
     return {
         renderProjectCard,

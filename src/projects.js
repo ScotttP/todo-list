@@ -1,4 +1,4 @@
-let projectList = [];
+let projectList = [];//sets to empty on initial load
 class Projects {
     
     constructor (){
@@ -6,17 +6,17 @@ class Projects {
         this.projectTasksList = [];
     }
     
-    addToProjectList (projectValues) {
+    addToProjectList (projectValues) {//adds project to list 
         projectList.push(projectValues.projectName)
         console.log(projectList)
         return projectList
     }
 
-    deleteFromProjectList (projectList){
-        let projToDelete = document.getElementById('deleteProjButton').getAttribute('value');
-        let projectToDeleteIndex = projectList.indexOf(projToDelete);
+    deleteFromProjectList (projectList,addProj){//deletes project from list
+        let projectToDeleteIndex = projectList.indexOf(addProj.textContent);
         projectList.splice(projectToDeleteIndex,1);
         console.log(projectList)
+        return projectList
     }
     
 
