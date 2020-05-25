@@ -13,7 +13,6 @@ submitProject.addEventListener('click', () => {
     const projectLoad = projectLoader(projectValues,projectList);//assigns the projectLoad factory function to a variable
 
     if (!projectList.includes(projectValues.projectName)){//ensures no project name is duplicated when executing the rest of the code.
-
         projectValues.addToProjectList(projectValues)
         projectLoad.loadProjectListOptions(projectValues)
         projectLoad.renderProjectCard(projectValues,projectList)
@@ -22,6 +21,7 @@ submitProject.addEventListener('click', () => {
             let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
             pushTaskToProject (taskValues,projectValues);
         })
+        
         document.getElementById('addProjectForm').value = '';//clears input of projectForm 
     }else{
         alert(`Can't Duplicate Project Names`)

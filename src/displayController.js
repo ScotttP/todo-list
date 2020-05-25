@@ -13,15 +13,15 @@ const taskPopUpWindow = () => {
     })
 }
 
-const taskDetailsWindow = () => {
+const taskDetailsWindow = () => {//displays the details of the task
 
 }
 
-const taskLoader = () => {
+const taskLoader = () => {//loads tasks in the tasks area.
     
 }
 
-const projectLoader = (projectValues,projectList) => {
+const projectLoader = (projectValues,projectList) => {//loads projets to the projects area
 
     function renderProjectCard () {//taksthe projectList array and displays the project names on the page
         const projectListDiv = document.querySelector('.projectList');
@@ -32,7 +32,7 @@ const projectLoader = (projectValues,projectList) => {
             addProj.value = project;
             addProj.textContent = project;
             projectListDiv.appendChild(addProj)
-            addDeleteButtonAndListener(addProj,project)//adds the delete button and listener with delete button.
+            addDeleteButtonAndListener(addProj,project)
         }
 
         
@@ -46,7 +46,7 @@ const projectLoader = (projectValues,projectList) => {
         projectFolder.appendChild(option)
         
     }
-    function addDeleteButtonAndListener (addProj,project) {
+    function addDeleteButtonAndListener (addProj,project) {//adds the delete button and listener with delete button.
         let deleteProjButton = document.createElement('i')
         deleteProjButton.setAttribute('class', 'fa fa-close')
         deleteProjButton.setAttribute('id','deleteProjButton')
