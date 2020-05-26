@@ -8,10 +8,6 @@ class Tasks {
         this.priority = priority
         this.taskNotes = taskNotes
     }
-
-
-   
-
 }
 
 export {Tasks}
