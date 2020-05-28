@@ -17,18 +17,11 @@ const taskDetailsWindow = () => {//displays the details of the task
 
 }
 
-const taskLoader = () => {//loads tasks in the tasks area.
+const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 
-    function renderTaskCard (taskValues){
+    function renderTaskCard (){
         
-        let li = document.querySelectorAll('li');
-        li.forEach(projects => {
-            projects.addEventListener('click', () => {
-                if (projects.id === taskValues.projectFolder){
-                    console.log(taskValues.taskName)//need this to list all taskNames with the project folder of ...
-                }
-            })
-        })
+        
       
     } 
     return {
@@ -51,6 +44,11 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
             addDeleteButtonAndListener(addProj,project)
         }
         
+        
+    }
+    function showProjectsTasks (taskValues,taskList) {
+        console.log(taskValues.projectFolder)
+        console.log()
         
     }
     function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window
@@ -76,7 +74,8 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
     }
     return {
         renderProjectCard,
-        loadProjectListOptions
+        loadProjectListOptions,
+        showProjectsTasks
     }
     
 }

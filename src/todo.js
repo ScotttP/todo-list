@@ -1,3 +1,4 @@
+let taskList = [];//sets to empty on initial load
 class Tasks {
 
     constructor (taskName,projectFolder, taskDescription, dueDate, priority, taskNotes){
@@ -8,6 +9,9 @@ class Tasks {
         this.priority = priority
         this.taskNotes = taskNotes
     }
+    addToTaskList (taskValues) {
+        taskList.push(taskValues)
+    }
 }
 
-export {Tasks}
+export {Tasks,taskList}

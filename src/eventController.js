@@ -1,4 +1,4 @@
-import { Tasks } from "./todo.js"
+import { Tasks,taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
 import {loadProjectListOptions,projectLoader,taskLoader} from "./displayController.js"
 import {taskPopUpWindow} from "./displayController.js"
@@ -7,6 +7,7 @@ const events = () => {
 
 const submitProject = document.querySelector('#addProjectButton');
 const submitTask = document.querySelector('#submit');
+
 
 submitProject.addEventListener('click', () => {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
@@ -17,13 +18,21 @@ submitProject.addEventListener('click', () => {
             projectValues.addToProjectList(projectValues)
             projectLoad.loadProjectListOptions(projectValues)
             projectLoad.renderProjectCard(projectValues,projectList)
+            
+            const showTasks = document.querySelector('.projects');
 
             submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
                 let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
-                pushTaskToProject (taskValues,projectValues);
-                const taskLoad = taskLoader();
-                taskLoad.renderTaskCard(taskValues);
+                taskValues.addToTaskList(taskValues)
+                const taskLoad = taskLoader(taskList,taskValues);
+                taskLoad.renderTaskCard();
+
+                showTasks.addEventListener('click', () => {
+                    projectLoad.showProjectsTasks(taskValues,taskList)
+                })
             })
+
+            
             document.getElementById('addProjectForm').value = '';//clears input of projectForm 
 
         }else{
@@ -31,12 +40,6 @@ submitProject.addEventListener('click', () => {
         }
     }
 })
-
-function pushTaskToProject (taskValues,projectValues) {//adds task to the specified project
-    if (taskValues.projectFolder === projectValues.projectName){
-        projectValues.projectTasksList.push(taskValues)
-    }
-}
 
 
 }
