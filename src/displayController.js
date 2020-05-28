@@ -19,73 +19,18 @@ const taskDetailsWindow = () => {//displays the details of the task
 
 const taskLoader = () => {//loads tasks in the tasks area.
 
-    function renderTaskCard (projectValues){
+    function renderTaskCard (taskValues){
         
-        let table = document.querySelector('.todoTasks')
-        table.innerHTML = '';
-        
-        for (let properties in projectValues){
-            if (typeof projectValues[properties] === 'object'){
-                for (let task of projectValues[properties]){
-                    let taskItem = document.createElement('tr')
-                    
-                    const td1 = 
-                    document.createElement('td')
-                    const td2 = 
-                    document.createElement('td')
-                    const td3 = 
-                    document.createElement('td')
-                    const td4 = 
-                    document.createElement('td')
-                    const td5 = 
-                    document.createElement('td')
-                
-                
-                    const checkBox =
-                    document.createElement('input')
-                    checkBox.setAttribute('type', 'checkbox')
-                    checkBox.setAttribute('id', 'checkBox')
-                
-                    const todoName = 
-                    document.createElement('div')
-                    todoName.setAttribute('id', 'todoName')
-                    todoName.textContent = task.taskName
-                
-                    const todoDate = 
-                    document.createElement('div')
-                    todoDate.setAttribute('id', 'dueDate')
-                    todoDate.textContent = task.dueDate
-                
-                    const todoPriority = 
-                    document.createElement('div')
-                    todoPriority.setAttribute('id', 'priority')
-                    todoPriority.textContent = task.priority
-                
-                    const deleteButton = 
-                    document.createElement('button')
-                    deleteButton.setAttribute('id', 'deleteButton')
-                    deleteButton.setAttribute('type', 'button')
-                    deleteButton.textContent = 'DELETE'
-                
-                    td1.appendChild(checkBox)
-                    td2.appendChild(todoName)
-                    td3.appendChild(todoDate)
-                    td4.appendChild(todoPriority)
-                    td5.appendChild(deleteButton)
-                
-                    taskItem.appendChild(td1)
-                    taskItem.appendChild(td2)
-                    taskItem.appendChild(td3)
-                    taskItem.appendChild(td4)
-                    taskItem.appendChild(td5)
-            
-                    table.appendChild(taskItem)
+        let li = document.querySelectorAll('li');
+        li.forEach(projects => {
+            projects.addEventListener('click', () => {
+                if (projects.id === taskValues.projectFolder){
+                    console.log(taskValues.taskName)//need this to list all taskNames with the project folder of ...
                 }
-            }
-        }
-        
-    }
-    
+            })
+        })
+      
+    } 
     return {
         renderTaskCard
     }
@@ -99,7 +44,8 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
     
         for (let project of projectList){
             let addProj = document.createElement('li');
-            addProj.value = project;
+            addProj.className = 'projects';
+            addProj.id = project;
             addProj.textContent = project;
             projectListDiv.appendChild(addProj)
             addDeleteButtonAndListener(addProj,project)

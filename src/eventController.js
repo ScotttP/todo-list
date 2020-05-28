@@ -22,8 +22,7 @@ submitProject.addEventListener('click', () => {
                 let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
                 pushTaskToProject (taskValues,projectValues);
                 const taskLoad = taskLoader();
-                taskLoad.renderTaskCard(projectValues);
-                console.log(projectValues)
+                taskLoad.renderTaskCard(taskValues);
             })
             document.getElementById('addProjectForm').value = '';//clears input of projectForm 
 
@@ -38,6 +37,7 @@ function pushTaskToProject (taskValues,projectValues) {//adds task to the specif
         projectValues.projectTasksList.push(taskValues)
     }
 }
+
 
 }
 
