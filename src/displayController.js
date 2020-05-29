@@ -1,4 +1,4 @@
-import { Tasks } from "./todo.js"
+import { Tasks, taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
 
 const taskPopUpWindow = () => {
@@ -46,9 +46,14 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         
         
     }
-    function showProjectsTasks (taskValues,taskList) {
-        console.log(taskValues.projectFolder)
-        console.log()
+    function showProjectsTasks (taskValues,taskList,li) {
+        
+        if (li.id === taskValues.projectFolder){
+            for (let values in taskValues){
+                console.log(taskValues[values])
+            }
+        }
+        
         
     }
     function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window
