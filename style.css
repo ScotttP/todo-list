@@ -145,6 +145,9 @@
             cursor: pointer;
             color: red;
         }
+        .projects:hover{
+            cursor: pointer;
+        }
 
         
 

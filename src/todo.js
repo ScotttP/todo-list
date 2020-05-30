@@ -11,6 +11,7 @@ class Tasks {
     }
     addToTaskList (taskValues) {
         taskList.push(taskValues)
+        return taskList
     }
 }
 

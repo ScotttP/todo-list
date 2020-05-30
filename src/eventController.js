@@ -3,11 +3,12 @@ import { Projects,projectList } from "./projects.js"
 import {loadProjectListOptions,projectLoader,taskLoader} from "./displayController.js"
 import {taskPopUpWindow} from "./displayController.js"
 
+const taskWindow = taskPopUpWindow()
 const events = () => {
 
     const submitProject = document.querySelector('#addProjectButton');
     const submitTask = document.querySelector('#submit');
-
+    const allTasks = document.querySelector('#allTasks')
 
 submitProject.addEventListener('click', () => {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
@@ -23,40 +24,32 @@ submitProject.addEventListener('click', () => {
             const projectSelection = document.querySelectorAll('.projects');
 
             submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
-                let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
-                taskValues.addToTaskList(taskValues)
-                const taskLoad = taskLoader(taskList,taskValues);
-                taskLoad.renderTaskCard();
-
-                projectSelection.forEach(li => {
-                    console.log(li)
-                    li.addEventListener('click', () => {
-                        projectLoad.showProjectsTasks(taskValues,taskList,li)
-                    })
-                })
-                removeShowTasks(projectSelection)
+                setTask();//sets the task values
+                taskWindow.hide()//hides the task display
             })
-            document.getElementById('addProjectForm').value = '';//clears input of projectForm 
-            removeSubmitTask (submitTask)   
+
+            document.getElementById('addProjectForm').value = '';//clears input of projectForm  
         }else{
             alert(`Can't Duplicate Project Names`)
         }
-    
+
     }
     
 
 })
 
-function removeSubmitProject () {
+function setTask () {
+    let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+    taskValues.addToTaskList(taskValues)
+
+    const taskLoad = taskLoader(taskList,taskValues);
+    allTasks.addEventListener('click', () => {
+
+        taskLoad.renderAllTasks(taskList,taskValues);
+    })
     
+    return taskValues
 }
-function removeSubmitTask () {
- 
-}
-function removeShowTasks(projectSelection) {
-
-}
-
 }
 
 
