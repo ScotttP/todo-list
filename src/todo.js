@@ -13,6 +13,10 @@ class Tasks {
         taskList.push(taskValues)
         return taskList
     }
+    deleteFromTaskLIst (taskList,index){
+        taskList.splice(index,1)
+        console.log(taskList)
+    }
 }
 
 export {Tasks,taskList}
