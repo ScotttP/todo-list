@@ -23,7 +23,7 @@ submitProject.addEventListener('click', () => {
             const projectTasks = document.querySelectorAll('.projects');
             projectTasks.forEach((li) => {
                 li.addEventListener('click', () => {
-                    projectLoad.showProjectsTasks()
+                    projectLoad.renderProjectsTasks()
                 })
                 
             })

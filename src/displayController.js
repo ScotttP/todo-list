@@ -62,9 +62,6 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         } 
         
     }
-    function renderProjectsTasks () {
-
-    }
     function addDeleteTaskAndListener (taskItem,index) {
         let deleteTd = document.createElement('td')
         let deleteTask = document.createElement('button')
@@ -105,8 +102,8 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         
         
     }
-    function showProjectsTasks (taskValues,taskList,li) {
-        console.log('hi')
+    function renderProjectsTasks (taskValues,taskList,li) {
+        console.log()
         // if (li.id === taskValues.projectFolder){
         //     for (let values in taskValues){
         //         console.log(taskValues[values])
@@ -140,7 +137,7 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
     return {
         renderProjectCard,
         loadProjectListOptions,
-        showProjectsTasks
+        renderProjectsTasks
     }
     
 }
