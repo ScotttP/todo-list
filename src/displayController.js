@@ -38,7 +38,8 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             
             let taskItem = document.createElement('tr')
             taskItem.className = "todoItem"
-            taskItem.id = `${index}`
+            taskItem.id = 'hi'
+            taskItem.value = `${index}`
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
@@ -102,14 +103,14 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         
         
     }
-    function renderProjectsTasks (taskValues,taskList,li) {
-        console.log()
-        // if (li.id === taskValues.projectFolder){
-        //     for (let values in taskValues){
-        //         console.log(taskValues[values])
-        //     }
-        // }
+    function renderProjectsTasks (taskList,li) {
+        for (let properties of taskList){
+            if (properties.projectFolder !== li.textContent){
+               document.getElementById('hi').style.display='none';
+            }
+        }
         
+
         
     }
     function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window

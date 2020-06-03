@@ -20,13 +20,7 @@ submitProject.addEventListener('click', () => {
             projectValues.addToProjectList(projectValues)
             projectLoad.loadProjectListOptions(projectValues)
             projectLoad.renderProjectCard(projectValues,projectList)
-            const projectTasks = document.querySelectorAll('.projects');
-            projectTasks.forEach((li) => {
-                li.addEventListener('click', () => {
-                    projectLoad.renderProjectsTasks()
-                })
-                
-            })
+           
             document.getElementById('addProjectForm').value = '';//clears input of projectForm  
         }else{
             alert(`Can't Duplicate Project Names`)
@@ -38,14 +32,14 @@ submitProject.addEventListener('click', () => {
 })
 
 submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
-    setTask();//sets the task values
+    const projectLoad = projectLoader();
+    const projectTasks = document.querySelectorAll('.projects');
+    setTask(projectLoad,projectTasks);//sets the task values
     taskWindow.hide()//hides the task display
-    
+    remove(projectLoad,projectTasks,submitTask)
 })
 
-
-
-function setTask () {
+function setTask (projectLoad,projectTasks) {
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     taskValues.addToTaskList(taskValues)
 
@@ -54,10 +48,31 @@ function setTask () {
 
     allTasks.addEventListener('click', () => {
         taskLoad.renderAllTasks(taskList);
-        console.log('hi')
     })
-    //let deleteTasks = document.querySelectorAll('#deleteTask')
     
+    projectTasks.forEach((li) => {
+        
+        li.addEventListener('click', (e) => {
+            projectLoad.renderProjectsTasks(taskList,li)
+            console.log('add')
+        })
+        
+    })
+
+    
+}
+
+function remove (projectLoad,projectTasks,submitTask) {//this doesn't work
+
+    projectTasks.forEach(li => {
+        
+        li.removeEventListener('click', () => {
+            projectLoad.renderProjectsTasks(taskList,li)
+            console.log('remove')
+        })
+        
+    })
+
 }
 
 }
