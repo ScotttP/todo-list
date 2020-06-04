@@ -31,15 +31,14 @@ const taskDetailsWindow = () => {//displays the details of the task
 const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     const tBody = document.querySelector('#tbody');
 
-    function renderAllTasks (taskList){
+    function renderAllTasks (taskList,taskValues){
         tBody.innerHTML = '';
-        
+
         for (let index in taskList){
             
             let taskItem = document.createElement('tr')
             taskItem.className = "todoItem"
-            taskItem.id = 'hi'
-            taskItem.value = `${index}`
+            taskItem.id = `${taskValues.projectFolder}TableCard`
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
@@ -103,11 +102,21 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         
         
     }
-    function renderProjectsTasks (taskList,li) {
+    function renderProjectsTasks (taskList,li,taskValues) {
+        let allTaskCards = document.getElementsByClassName('todoItem')
+        for (let i = 0; i<allTaskCards.length;++i){
+            allTaskCards[i].style.display = 'none'
+        }
+
         for (let properties of taskList){
-            if (properties.projectFolder !== li.textContent){
-               document.getElementById('hi').style.display='none';
-            }
+                console.log(properties.projectFolder)
+                console.log(li.id)
+            
+            // if (properties.projectFolder === li.id){
+            //     document.getElementById(`${taskValues.projectFolder}TableCard`).style.display='flex';
+            //  }else{
+
+            //  }
         }
         
 

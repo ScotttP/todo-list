@@ -44,17 +44,16 @@ function setTask (projectLoad,projectTasks) {
     taskValues.addToTaskList(taskValues)
 
     const taskLoad = taskLoader(taskList,taskValues);
-    taskLoad.renderAllTasks(taskList);
+    taskLoad.renderAllTasks(taskList,taskValues);
 
     allTasks.addEventListener('click', () => {
-        taskLoad.renderAllTasks(taskList);
+        taskLoad.renderAllTasks(taskList,taskValues);
     })
     
     projectTasks.forEach((li) => {
         
         li.addEventListener('click', (e) => {
-            projectLoad.renderProjectsTasks(taskList,li)
-            console.log('add')
+            projectLoad.renderProjectsTasks(taskList,li,taskValues)
         })
         
     })
@@ -68,7 +67,7 @@ function remove (projectLoad,projectTasks,submitTask) {//this doesn't work
         
         li.removeEventListener('click', () => {
             projectLoad.renderProjectsTasks(taskList,li)
-            console.log('remove')
+
         })
         
     })
