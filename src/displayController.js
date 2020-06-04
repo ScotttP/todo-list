@@ -39,7 +39,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             let taskItem = document.createElement('tr')
             taskItem.className = "todoItem"
             taskItem.id = `${taskList[index].projectFolder}TableCard` 
-
+            taskItem.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
@@ -67,13 +67,18 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     }
       function renderProjectsTasks (taskList,li) {
         let allTaskCards = document.getElementsByClassName('todoItem')
+        
+
         for (let i = 0; i<allTaskCards.length;++i){
             allTaskCards[i].style.display = 'none'
         }
 
         for (let index in taskList){    
+            let project = document.getElementsByName(`${taskList[index].projectFolder}TableCard`)
             if (taskList[index].projectFolder === li.id){
-                document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='flex';
+                for (let i = 0; i<projects.length;++i){
+                    project[i].style.display = 'flex'
+                }
             }else if (taskList[index].projectFolder !== li.id){
 
                  document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='none';
