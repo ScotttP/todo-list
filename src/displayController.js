@@ -38,7 +38,8 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             
             let taskItem = document.createElement('tr')
             taskItem.className = "todoItem"
-            taskItem.id = `${taskValues.projectFolder}TableCard`
+            taskItem.id = `${taskList[index].projectFolder}TableCard` 
+
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
@@ -56,11 +57,28 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                     taskItem.removeChild(td)
                 }
             }
+
+            
             
             addDeleteTaskAndListener(taskItem,index)
             tBody.appendChild(taskItem)
         } 
         
+    }
+      function renderProjectsTasks (taskList,li) {
+        let allTaskCards = document.getElementsByClassName('todoItem')
+        for (let i = 0; i<allTaskCards.length;++i){
+            allTaskCards[i].style.display = 'none'
+        }
+
+        for (let index in taskList){    
+            if (taskList[index].projectFolder === li.id){
+                document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='flex';
+            }else if (taskList[index].projectFolder !== li.id){
+
+                 document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='none';
+            }
+        }
     }
     function addDeleteTaskAndListener (taskItem,index) {
         let deleteTd = document.createElement('td')
@@ -77,7 +95,8 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         taskItem.appendChild(deleteTd)
     }
     return {
-        renderAllTasks
+        renderAllTasks,
+        renderProjectsTasks
     }
 }
 
@@ -98,29 +117,6 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
             projectListDiv.appendChild(addProj)
             addDeleteButtonAndListener(addProj,project)
         }
-        
-        
-        
-    }
-    function renderProjectsTasks (taskList,li,taskValues) {
-        let allTaskCards = document.getElementsByClassName('todoItem')
-        for (let i = 0; i<allTaskCards.length;++i){
-            allTaskCards[i].style.display = 'none'
-        }
-
-        for (let properties of taskList){
-                console.log(properties.projectFolder)
-                console.log(li.id)
-            
-            // if (properties.projectFolder === li.id){
-            //     document.getElementById(`${taskValues.projectFolder}TableCard`).style.display='flex';
-            //  }else{
-
-            //  }
-        }
-        
-
-        
     }
     function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window
         const projectFolder = document.querySelector('#projectFolder');
@@ -146,8 +142,8 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
     }
     return {
         renderProjectCard,
-        loadProjectListOptions,
-        renderProjectsTasks
+        loadProjectListOptions
+        
     }
     
 }

@@ -148,6 +148,9 @@
         .projects:hover{
             cursor: pointer;
         }
+        #allTasks:hover {
+            cursor: pointer;
+        }
 
         
 

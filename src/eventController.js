@@ -10,8 +10,19 @@ const submitProject = document.querySelector('#addProjectButton');
 const submitTask = document.querySelector('#submit');
 const allTasks = document.querySelector('#allTasks');
 
-
 submitProject.addEventListener('click', () => {
+   setProjects()
+
+})
+
+submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
+    const projectLoad = projectLoader();
+    const projectTasks = document.querySelectorAll('.projects');
+    setTask(projectLoad,projectTasks);//sets the task values
+    taskWindow.hide()//hides the task display
+})
+
+function setProjects () {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
     const projectLoad = projectLoader(projectValues,projectList);//assigns the projectLoad factory function to a variable
 
@@ -27,21 +38,15 @@ submitProject.addEventListener('click', () => {
         }
 
     }
-    
 
-})
 
-submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
-    const projectLoad = projectLoader();
-    const projectTasks = document.querySelectorAll('.projects');
-    setTask(projectLoad,projectTasks);//sets the task values
-    taskWindow.hide()//hides the task display
-    remove(projectLoad,projectTasks,submitTask)
-})
+}
+
 
 function setTask (projectLoad,projectTasks) {
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     taskValues.addToTaskList(taskValues)
+    console.log(taskValues)
 
     const taskLoad = taskLoader(taskList,taskValues);
     taskLoad.renderAllTasks(taskList,taskValues);
@@ -53,25 +58,35 @@ function setTask (projectLoad,projectTasks) {
     projectTasks.forEach((li) => {
         
         li.addEventListener('click', (e) => {
-            projectLoad.renderProjectsTasks(taskList,li,taskValues)
+            taskLoad.renderProjectsTasks(taskList,li)
         })
         
     })
-
-    
+    remove(projectLoad,projectTasks,taskList,projectList,taskLoad)
 }
 
-function remove (projectLoad,projectTasks,submitTask) {//this doesn't work
+function remove (projectLoad,projectTasks,taskLoad) {//might not need this.
 
     projectTasks.forEach(li => {
-        
         li.removeEventListener('click', () => {
-            projectLoad.renderProjectsTasks(taskList,li)
+            taskLoad.renderProjectsTasks(taskList,li)
 
         })
-        
     })
-
+    allTasks.removeEventListener('click', () => {
+        taskLoad.renderAllTasks(taskList,taskValues);
+    })
+    submitTask.removeEventListener('click', () => {//adds event listeners to the submit task button
+        const projectLoad = projectLoader();
+        const projectTasks = document.querySelectorAll('.projects');
+        setTask(projectLoad,projectTasks);//sets the task values
+        taskWindow.hide()//hides the task display
+    })
+    submitProject.removeEventListener('click', () => {
+        setProjects()
+     
+     })
+     console.log('remove')
 }
 
 }
