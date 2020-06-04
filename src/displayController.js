@@ -67,16 +67,13 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     }
       function renderProjectsTasks (taskList,li) {
         let allTaskCards = document.getElementsByClassName('todoItem')
-        
-
         for (let i = 0; i<allTaskCards.length;++i){
             allTaskCards[i].style.display = 'none'
         }
-
         for (let index in taskList){    
             let project = document.getElementsByName(`${taskList[index].projectFolder}TableCard`)
             if (taskList[index].projectFolder === li.id){
-                for (let i = 0; i<projects.length;++i){
+                for (let i = 0; i<project.length;++i){
                     project[i].style.display = 'flex'
                 }
             }else if (taskList[index].projectFolder !== li.id){
