@@ -1,14 +1,16 @@
 import { Tasks,taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
-import {loadProjectListOptions,projectLoader,taskLoader} from "./displayController.js"
+import {loadProjectListOptions,projectLoader,taskLoader,taskDetailsWindow} from "./displayController.js"
 import {taskPopUpWindow} from "./displayController.js"
 
 const taskWindow = taskPopUpWindow()
+const taskDetails = taskDetailsWindow()
 const events = () => {
 
 const submitProject = document.querySelector('#addProjectButton');
 const submitTask = document.querySelector('#submit');
 const allTasks = document.querySelector('#allTasks');
+
 
 submitProject.addEventListener('click', () => {
    setProjects()
@@ -19,6 +21,7 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
     const projectLoad = projectLoader();
     const projectTasks = document.querySelectorAll('.projects');
     setTask(projectLoad,projectTasks);//sets the task values
+    taskWindow.clearValues()
     taskWindow.hide()//hides the task display
 })
 
@@ -46,7 +49,6 @@ function setProjects () {
 function setTask (projectLoad,projectTasks) {
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     taskValues.addToTaskList(taskValues)
-    console.log(taskValues)
 
     const taskLoad = taskLoader(taskList,taskValues);
     taskLoad.renderAllTasks(taskList,taskValues);
@@ -62,33 +64,19 @@ function setTask (projectLoad,projectTasks) {
         })
         
     })
-    remove(projectLoad,projectTasks,taskList,projectList,taskLoad)
-}
 
-function remove (projectLoad,projectTasks,taskLoad) {//might not need this.
-
-    projectTasks.forEach(li => {
-        li.removeEventListener('click', () => {
-            taskLoad.renderProjectsTasks(taskList,li)
-
+    const task = document.querySelectorAll('.taskNameCardDisplay')
+    
+    task.forEach(td => {
+        td.addEventListener('click', () => {
+            taskWindow.display()
+            //taskDetails.getValues()
+    
         })
     })
-    allTasks.removeEventListener('click', () => {
-        taskLoad.renderAllTasks(taskList,taskValues);
-    })
-    submitTask.removeEventListener('click', () => {//adds event listeners to the submit task button
-        const projectLoad = projectLoader();
-        const projectTasks = document.querySelectorAll('.projects');
-        setTask(projectLoad,projectTasks);//sets the task values
-        taskWindow.hide()//hides the task display
-    })
-    submitProject.removeEventListener('click', () => {
-        setProjects()
-     
-     })
-     console.log('remove')
-}
 
+
+}
 }
 
 

@@ -11,6 +11,12 @@ const taskPopUpWindow = () => {
     function hide () {
         document.getElementById('addTaskWindowContainer').style.display = 'none';//closes window
     }
+    function clearValues () {
+        document.getElementById('taskName').value = '';
+        document.getElementById('taskDescription').value = '';
+        document.getElementById('dueDate').value = '';
+        document.getElementById('taskNotes').value = '';
+    }
     
     windowDisplay.addEventListener('click', () =>{
         display()
@@ -20,16 +26,23 @@ const taskPopUpWindow = () => {
     })
     return {
         display,
-        hide
+        hide,
+        clearValues
     }
 }
 
 const taskDetailsWindow = () => {//displays the details of the task
-
+    function getValues (index,taskList) {
+        let tasksIndex = index;
+        console.log(taskList[tasksIndex])
+        console.log(index)
+    }
+    return {getValues}
 }
 
 const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     const tBody = document.querySelector('#tbody');
+    const taskDetails = taskDetailsWindow()
 
     function renderAllTasks (taskList,taskValues){
         tBody.innerHTML = '';
@@ -38,7 +51,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             
             let taskItem = document.createElement('tr')
             taskItem.className = "todoItem"
-            taskItem.id = `${taskList[index].projectFolder}TableCard` 
+            taskItem.id = `${index}` 
             taskItem.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
         
             let checkTd = document.createElement('td')
@@ -49,19 +62,17 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 
             for (let tasks in taskList[index]){
                 let td = document.createElement('td')
-                td.id = `${tasks}CardDisplay`
+                td.className = `${tasks}CardDisplay`
                 td.textContent = `${taskList[index][tasks]}`
                 taskItem.appendChild(td)
                 //this renders all of the properties but i only 3 of the properties. need to figure out logic to achieve that.
-                if (td.id === 'projectFolderCardDisplay' || td.id === 'taskDescriptionCardDisplay' || td.id === 'taskNotesCardDisplay' ){
+                if (td.className === 'projectFolderCardDisplay' || td.className === 'taskDescriptionCardDisplay' || td.className === 'taskNotesCardDisplay' ){
                     taskItem.removeChild(td)
                 }
             }
-
-            
-            
             addDeleteTaskAndListener(taskItem,index)
             tBody.appendChild(taskItem)
+            taskDetails.getValues(index,taskList)
         } 
         
     }
@@ -77,10 +88,10 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                     project[i].style.display = 'flex'
                 }
             }else if (taskList[index].projectFolder !== li.id){
-
-                 document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='none';
+                document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='none';
             }
         }
+        
     }
     function addDeleteTaskAndListener (taskItem,index) {
         let deleteTd = document.createElement('td')
@@ -151,4 +162,4 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
 }
 
 
-export{taskPopUpWindow,projectLoader,taskLoader}
+export{taskPopUpWindow,projectLoader,taskLoader,taskDetailsWindow}
