@@ -41,11 +41,7 @@ function setProjects () {
         }
 
     }
-
-
 }
-
-
 function setTask (projectLoad,projectTasks) {
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     taskValues.addToTaskList(taskValues)
@@ -70,7 +66,7 @@ function setTask (projectLoad,projectTasks) {
     task.forEach(td => {
         td.addEventListener('click', () => {
             taskWindow.display()
-            //taskDetails.getValues()
+            taskDetails.getValues(taskList)
     
         })
     })

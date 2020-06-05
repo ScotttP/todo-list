@@ -32,10 +32,34 @@ const taskPopUpWindow = () => {
 }
 
 const taskDetailsWindow = () => {//displays the details of the task
-    function getValues (index,taskList) {
-        let tasksIndex = index;
-        console.log(taskList[tasksIndex])
-        console.log(index)
+    function getValues (taskList) {
+        let todoItem = document.querySelectorAll('.todoItem')
+        todoItem.forEach(tr => {
+            tr.addEventListener('click', () => {
+                setValues(tr,taskList)
+            })
+        })
+
+    }
+    function setValues (tr,taskList) {
+        let indexOfThisTask = tr.id
+
+        let taskNameWindow = document.getElementById('taskName')
+        let taskProjectFolderWindow = document.getElementById('projectFolder')
+        let taskDecriptionWindow = document.getElementById('taskDescription')
+        let taskdueDateWindow = document.getElementById('dueDate')
+        let taskPriorityWindow = document.getElementById('priority')
+        let taskNotesWindow = document.getElementById('taskNotes')
+
+        taskNameWindow.value = taskList[indexOfThisTask].taskName
+        taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder
+        taskDecriptionWindow.value = taskList[indexOfThisTask].taskDescription
+        taskdueDateWindow.value = taskList[indexOfThisTask].dueDate
+        taskPriorityWindow.value = taskList[indexOfThisTask].priority
+        taskNotesWindow.value = taskList[indexOfThisTask].taskNotes
+
+        
+        console.log(taskList[indexOfThisTask].taskName)
     }
     return {getValues}
 }
@@ -72,7 +96,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             }
             addDeleteTaskAndListener(taskItem,index)
             tBody.appendChild(taskItem)
-            taskDetails.getValues(index,taskList)
+            
         } 
         
     }
@@ -87,8 +111,6 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                 for (let i = 0; i<project.length;++i){
                     project[i].style.display = 'flex'
                 }
-            }else if (taskList[index].projectFolder !== li.id){
-                document.getElementById(`${taskList[index].projectFolder}TableCard`).style.display='none';
             }
         }
         
