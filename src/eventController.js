@@ -50,8 +50,6 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
         taskWindow.clearValues()
         taskWindow.hide()//hides the task displaysetNewTask()
     }
-
-
 })
 
 

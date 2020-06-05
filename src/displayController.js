@@ -100,7 +100,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         let display = false
         clearOrDisplayTasks(display)
 
-        for (let index in taskList){    
+        for (let index in taskList){   
             let project = document.getElementsByName(`${taskList[index].projectFolder}TableCard`)
             if (taskList[index].projectFolder === li.id){
                 for (let i = 0; i<project.length;++i){
