@@ -1,9 +1,16 @@
 import { Tasks, taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
 
+
+let taskNameWindow = document.getElementById('taskName')
+let taskProjectFolderWindow = document.getElementById('projectFolder')
+let taskDecriptionWindow = document.getElementById('taskDescription')
+let taskdueDateWindow = document.getElementById('dueDate')
+let taskPriorityWindow = document.getElementById('priority')
+let taskNotesWindow = document.getElementById('taskNotes')
+
 const taskPopUpWindow = () => {
-    const windowDisplay = document.querySelector('#addTaskButton');
-    const cancelDisplay = document.querySelector('#cancel');
+
 
     function display () {
         document.getElementById('addTaskWindowContainer').style.display = 'block';//displays window
@@ -12,18 +19,13 @@ const taskPopUpWindow = () => {
         document.getElementById('addTaskWindowContainer').style.display = 'none';//closes window
     }
     function clearValues () {
-        document.getElementById('taskName').value = '';
-        document.getElementById('taskDescription').value = '';
-        document.getElementById('dueDate').value = '';
-        document.getElementById('taskNotes').value = '';
+        taskNameWindow.value = '';
+        taskDecriptionWindow.value = '';
+        taskdueDateWindow.value = '';
+        taskNotesWindow.value = '';
     }
     
-    windowDisplay.addEventListener('click', () =>{
-        display()
-    })
-    cancelDisplay.addEventListener('click', () =>{
-        hide()
-    })
+
     return {
         display,
         hide,
@@ -32,24 +34,8 @@ const taskPopUpWindow = () => {
 }
 
 const taskDetailsWindow = () => {//displays the details of the task
-    function getValues (taskList) {
-        let todoItem = document.querySelectorAll('.todoItem')
-        todoItem.forEach(tr => {
-            tr.addEventListener('click', () => {
-                setValues(tr,taskList)
-            })
-        })
-
-    }
     function setValues (tr,taskList) {
         let indexOfThisTask = tr.id
-
-        let taskNameWindow = document.getElementById('taskName')
-        let taskProjectFolderWindow = document.getElementById('projectFolder')
-        let taskDecriptionWindow = document.getElementById('taskDescription')
-        let taskdueDateWindow = document.getElementById('dueDate')
-        let taskPriorityWindow = document.getElementById('priority')
-        let taskNotesWindow = document.getElementById('taskNotes')
 
         taskNameWindow.value = taskList[indexOfThisTask].taskName
         taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder
@@ -57,18 +43,15 @@ const taskDetailsWindow = () => {//displays the details of the task
         taskdueDateWindow.value = taskList[indexOfThisTask].dueDate
         taskPriorityWindow.value = taskList[indexOfThisTask].priority
         taskNotesWindow.value = taskList[indexOfThisTask].taskNotes
-
-        
-        console.log(taskList[indexOfThisTask].taskName)
     }
-    return {getValues}
+    return {setValues}
 }
 
 const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     const tBody = document.querySelector('#tbody');
     const taskDetails = taskDetailsWindow()
 
-    function renderAllTasks (taskList,taskValues){
+    function renderAllTasks (taskList){
         tBody.innerHTML = '';
 
         for (let index in taskList){
@@ -100,11 +83,23 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         } 
         
     }
-      function renderProjectsTasks (taskList,li) {
+    function clearOrDisplayTasks (display) {
         let allTaskCards = document.getElementsByClassName('todoItem')
-        for (let i = 0; i<allTaskCards.length;++i){
-            allTaskCards[i].style.display = 'none'
+        if (display === false){
+            for (let i = 0; i<allTaskCards.length;++i){
+                allTaskCards[i].style.display = 'none'
+            }
+        }else if (display === true){
+            for (let i = 0; i<allTaskCards.length;++i){
+                allTaskCards[i].style.display = 'block'
+            }
         }
+
+    }
+    function renderProjectsTasks (taskList,li) {
+        let display = false
+        clearOrDisplayTasks(display)
+
         for (let index in taskList){    
             let project = document.getElementsByName(`${taskList[index].projectFolder}TableCard`)
             if (taskList[index].projectFolder === li.id){
@@ -113,7 +108,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                 }
             }
         }
-        
+    
     }
     function addDeleteTaskAndListener (taskItem,index) {
         let deleteTd = document.createElement('td')
@@ -131,7 +126,8 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     }
     return {
         renderAllTasks,
-        renderProjectsTasks
+        renderProjectsTasks,
+        clearOrDisplayTasks
     }
 }
 
@@ -153,7 +149,8 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
             addDeleteButtonAndListener(addProj,project)
         }
     }
-    function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window
+    function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window 
+        console.log(projectValues)//need to refactor is so it comes from the project list
         const projectFolder = document.querySelector('#projectFolder');
     
         let option = document.createElement('option');
@@ -172,7 +169,7 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         deleteProjButton.addEventListener('click', () => {
             projectValues.deleteFromProjectList(projectList,addProj)//deletes from projectList array
             renderProjectCard(projectValues,projectList)//renders the new project list
-            console.log(projectValues)
+            loadProjectListOptions(projectValues)
          })
     }
     return {

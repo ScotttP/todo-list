@@ -1,15 +1,31 @@
 import { Tasks,taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
-import {loadProjectListOptions,projectLoader,taskLoader,taskDetailsWindow} from "./displayController.js"
+import {projectLoader,taskLoader,taskDetailsWindow} from "./displayController.js"
 import {taskPopUpWindow} from "./displayController.js"
 
 const taskWindow = taskPopUpWindow()
 const taskDetails = taskDetailsWindow()
 const events = () => {
 
+let newTask
+
 const submitProject = document.querySelector('#addProjectButton');
 const submitTask = document.querySelector('#submit');
 const allTasks = document.querySelector('#allTasks');
+const windowDisplay = document.querySelector('#addTaskButton');
+const cancelDisplay = document.querySelector('#cancel');
+
+windowDisplay.addEventListener('click', () =>{
+    taskWindow.display()
+    taskWindow.clearValues()
+    newTask = true;
+    console.log(newTask)
+})
+cancelDisplay.addEventListener('click', () =>{
+    taskWindow.hide()
+    taskWindow.clearValues()
+    
+})
 
 
 submitProject.addEventListener('click', () => {
@@ -18,12 +34,28 @@ submitProject.addEventListener('click', () => {
 })
 
 submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
-    const projectLoad = projectLoader();
     const projectTasks = document.querySelectorAll('.projects');
-    setTask(projectLoad,projectTasks);//sets the task values
-    taskWindow.clearValues()
-    taskWindow.hide()//hides the task display
+    
+    if (newTask = true){
+        console.log(newTask)
+        let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+        taskValues.addToTaskList(taskValues)
+        setListeners(projectTasks,taskValues);//sets the task values
+        taskWindow.clearValues()
+        taskWindow.hide()//hides the task displaysetNewTask()
+    }else if (newTask = false){
+        console.log(newTask)
+        console.log('hi bitchets')
+        taskDetails.setValues(tr,taskList) //if they are just clicking on it to view details, then i need to make a seperate function in which the values in the todo object are changed.
+        taskWindow.clearValues()
+        taskWindow.hide()//hides the task displaysetNewTask()
+    }
+
+
 })
+
+
+
 
 function setProjects () {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
@@ -42,15 +74,18 @@ function setProjects () {
 
     }
 }
-function setTask (projectLoad,projectTasks) {
-    let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
-    taskValues.addToTaskList(taskValues)
+// function setNewTask () {
+
+//     return taskValues
+// }
+function setListeners (projectTasks,taskValues) {
 
     const taskLoad = taskLoader(taskList,taskValues);
     taskLoad.renderAllTasks(taskList,taskValues);
 
     allTasks.addEventListener('click', () => {
-        taskLoad.renderAllTasks(taskList,taskValues);
+        let display = true;
+        taskLoad.clearOrDisplayTasks(display)
     })
     
     projectTasks.forEach((li) => {
@@ -64,15 +99,29 @@ function setTask (projectLoad,projectTasks) {
     const task = document.querySelectorAll('.taskNameCardDisplay')
     
     task.forEach(td => {
+        
         td.addEventListener('click', () => {
+            newTask = false;
             taskWindow.display()
-            taskDetails.getValues(taskList)
+            setDetailListeners(taskList)
+            console.log(newTask)
     
         })
     })
 
 
 }
+
+function setDetailListeners (taskList) {
+    let todoItem = document.querySelectorAll('.todoItem')
+    todoItem.forEach(tr => {
+        tr.addEventListener('click', () => {
+            taskDetails.setValues(tr,taskList)
+        })
+    })
+
+}
+
 }
 
 
