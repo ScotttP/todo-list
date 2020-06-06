@@ -45,8 +45,7 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
         taskWindow.clearValues()
         taskWindow.hide()//hides the task displaysetNewTask()
     }else if (newTask === false){
-       let tr = document.getElementsByTagName('tr')
-       console.log(tr)
+        setDetailListeners(taskList,taskValues)
        // taskDetails.setValues(tr) need to figure out logic.
     }
 
@@ -100,26 +99,26 @@ function setListeners (projectTasks,taskValues) {
         td.addEventListener('click', () => {
             newTask = false;
             taskWindow.display()
-            setDetailListeners(taskList)
+            setDetailListeners(taskList,taskValues)
         })
     })
 
 
 }
 
-function setDetailListeners (taskList) {
+function setDetailListeners (taskList,taskValues) {
     let todoItem = document.querySelectorAll('.todoItem')
     todoItem.forEach(tr => {
         tr.addEventListener('click', () => {
             taskDetails.setValues(tr,taskList)
+            newTask = false;
         })
+        taskValues.changeTask(taskList,tr)
     })
 
 
 }
-function hi (tr) {
-    console.log(tr.id)
-}
+
 
 }
 

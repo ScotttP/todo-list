@@ -17,8 +17,8 @@ class Tasks {
         taskList.splice(index,1)
        return taskList
     }
-    changeTask (taskList){
-        console.log(taskList)
+    changeTask (taskList,tr){
+        console.log(tr.id)
     }
 }
 
