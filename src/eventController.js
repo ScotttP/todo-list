@@ -10,47 +10,52 @@ const events = () => {
 let newTask
 
 const submitProject = document.querySelector('#addProjectButton');
-const submitTask = document.querySelector('#submit');
+const submitTask = document.querySelector('#submitButton');
 const allTasks = document.querySelector('#allTasks');
 const windowDisplay = document.querySelector('#addTaskButton');
 const cancelDisplay = document.querySelector('#cancel');
 
+
 windowDisplay.addEventListener('click', () =>{
+    newTask = true;
     taskWindow.display()
     taskWindow.clearValues()
-    newTask = true;
     console.log(newTask)
 })
 cancelDisplay.addEventListener('click', () =>{
     taskWindow.hide()
     taskWindow.clearValues()
-    
+    newTask = false;
+    console.log(newTask)
 })
-
 
 submitProject.addEventListener('click', () => {
    setProjects()
 
 })
 
+
+
 submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
     const projectTasks = document.querySelectorAll('.projects');
-    
-    if (newTask = true){
-        console.log(newTask)
-        let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+    let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+    if (newTask === true){
         taskValues.addToTaskList(taskValues)
         setListeners(projectTasks,taskValues);//sets the task values
         taskWindow.clearValues()
         taskWindow.hide()//hides the task displaysetNewTask()
-    }else if (newTask = false){
-        console.log(newTask)
-        console.log('hi bitchets')
-        taskDetails.setValues(tr,taskList) //if they are just clicking on it to view details, then i need to make a seperate function in which the values in the todo object are changed.
-        taskWindow.clearValues()
-        taskWindow.hide()//hides the task displaysetNewTask()
+    }else if (newTask === false){
+       let tr = document.getElementsByTagName('tr')
+       console.log(tr)
+       // taskDetails.setValues(tr) need to figure out logic.
     }
+
+
 })
+
+// saveChanges.addEventListener('click', () => {
+//     console.log('saved')
+// })
 
 
 
@@ -72,10 +77,6 @@ function setProjects () {
 
     }
 }
-// function setNewTask () {
-
-//     return taskValues
-// }
 function setListeners (projectTasks,taskValues) {
 
     const taskLoad = taskLoader(taskList,taskValues);
@@ -87,7 +88,6 @@ function setListeners (projectTasks,taskValues) {
     })
     
     projectTasks.forEach((li) => {
-        
         li.addEventListener('click', (e) => {
             taskLoad.renderProjectsTasks(taskList,li)
         })
@@ -97,13 +97,10 @@ function setListeners (projectTasks,taskValues) {
     const task = document.querySelectorAll('.taskNameCardDisplay')
     
     task.forEach(td => {
-        
         td.addEventListener('click', () => {
             newTask = false;
             taskWindow.display()
             setDetailListeners(taskList)
-            console.log(newTask)
-    
         })
     })
 
@@ -118,6 +115,10 @@ function setDetailListeners (taskList) {
         })
     })
 
+
+}
+function hi (tr) {
+    console.log(tr.id)
 }
 
 }

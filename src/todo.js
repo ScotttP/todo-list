@@ -15,6 +15,9 @@ class Tasks {
     }
     deleteFromTaskLIst (taskList,index){
         taskList.splice(index,1)
+       return taskList
+    }
+    changeTask (taskList){
         console.log(taskList)
     }
 }

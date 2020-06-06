@@ -11,7 +11,6 @@ let taskNotesWindow = document.getElementById('taskNotes')
 
 const taskPopUpWindow = () => {
 
-
     function display () {
         document.getElementById('addTaskWindowContainer').style.display = 'block';//displays window
     }
@@ -29,13 +28,14 @@ const taskPopUpWindow = () => {
     return {
         display,
         hide,
-        clearValues
+        clearValues,
     }
 }
 
 const taskDetailsWindow = () => {//displays the details of the task
     function setValues (tr,taskList) {
         let indexOfThisTask = tr.id
+        console.log(tr)
 
         taskNameWindow.value = taskList[indexOfThisTask].taskName
         taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder
@@ -43,42 +43,42 @@ const taskDetailsWindow = () => {//displays the details of the task
         taskdueDateWindow.value = taskList[indexOfThisTask].dueDate
         taskPriorityWindow.value = taskList[indexOfThisTask].priority
         taskNotesWindow.value = taskList[indexOfThisTask].taskNotes
+
     }
     return {setValues}
 }
 
 const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     const tBody = document.querySelector('#tbody');
-    const taskDetails = taskDetailsWindow()
 
     function renderAllTasks (taskList){
         tBody.innerHTML = '';
 
         for (let index in taskList){
             
-            let taskItem = document.createElement('tr')
-            taskItem.className = "todoItem"
-            taskItem.id = `${index}` 
-            taskItem.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
+            let tr = document.createElement('tr')
+            tr.className = "todoItem"
+            tr.id = `${index}` 
+            tr.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
             checkBox.setAttribute('type','checkbox')
             checkTd.appendChild(checkBox)
-            taskItem.appendChild(checkTd)
+            tr.appendChild(checkTd)
 
             for (let tasks in taskList[index]){
                 let td = document.createElement('td')
                 td.className = `${tasks}CardDisplay`
                 td.textContent = `${taskList[index][tasks]}`
-                taskItem.appendChild(td)
+                tr.appendChild(td)
                 //this renders all of the properties but i only 3 of the properties. need to figure out logic to achieve that.
                 if (td.className === 'projectFolderCardDisplay' || td.className === 'taskDescriptionCardDisplay' || td.className === 'taskNotesCardDisplay' ){
-                    taskItem.removeChild(td)
+                    tr.removeChild(td)
                 }
             }
-            addDeleteTaskAndListener(taskItem,index)
-            tBody.appendChild(taskItem)
+            addDeleteTaskAndListener(tr,index)
+            tBody.appendChild(tr)
             
         } 
         
@@ -110,7 +110,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         }
     
     }
-    function addDeleteTaskAndListener (taskItem,index) {
+    function addDeleteTaskAndListener (tr,index) {
         let deleteTd = document.createElement('td')
         let deleteTask = document.createElement('button')
         deleteTask.setAttribute('type','button')
@@ -122,7 +122,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             renderAllTasks(taskList)
         })
         deleteTd.appendChild(deleteTask)
-        taskItem.appendChild(deleteTd)
+        tr.appendChild(deleteTd)
     }
     return {
         renderAllTasks,
@@ -150,7 +150,7 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         }
     }
     function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window 
-        console.log(projectValues)//need to refactor is so it comes from the project list
+        //need to refactor is so it comes from the project list
         const projectFolder = document.querySelector('#projectFolder');
     
         let option = document.createElement('option');
