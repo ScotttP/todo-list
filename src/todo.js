@@ -17,9 +17,15 @@ class Tasks {
         taskList.splice(index,1)
        return taskList
     }
-    changeTask (taskList,tr){
-        console.log(tr.id)
-    }
+    changeTask(tr,taskList){
+        let indexOfThisTask = tr.id
+        this.taskName = taskName.value
+        taskList[indexOfThisTask].taskName = this.taskName
+        console.log(taskList[indexOfThisTask].taskName )
+        console.log(this.taskName)
+        console.log(taskList)
+
+}
 }
 
 export {Tasks,taskList}

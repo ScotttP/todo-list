@@ -32,10 +32,9 @@ const taskPopUpWindow = () => {
     }
 }
 
-const taskDetailsWindow = () => {//displays the details of the task
-    function setValues (tr,taskList) {
+const taskDetailsWindow = (tr,taskList) => {//displays the details of the task
+    function setValues () {
         let indexOfThisTask = tr.id
-        console.log(tr)
 
         taskNameWindow.value = taskList[indexOfThisTask].taskName
         taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder

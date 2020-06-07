@@ -4,7 +4,7 @@ import {projectLoader,taskLoader,taskDetailsWindow} from "./displayController.js
 import {taskPopUpWindow} from "./displayController.js"
 
 const taskWindow = taskPopUpWindow()
-const taskDetails = taskDetailsWindow()
+
 const events = () => {
 
 let newTask
@@ -44,21 +44,10 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
         setListeners(projectTasks,taskValues);//sets the task values
         taskWindow.clearValues()
         taskWindow.hide()//hides the task displaysetNewTask()
-    }else if (newTask === false){
-        setDetailListeners(taskList,taskValues)
-       // taskDetails.setValues(tr) need to figure out logic.
     }
 
 
 })
-
-// saveChanges.addEventListener('click', () => {
-//     console.log('saved')
-// })
-
-
-
-
 function setProjects () {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
     const projectLoad = projectLoader(projectValues,projectList);//assigns the projectLoad factory function to a variable
@@ -99,23 +88,32 @@ function setListeners (projectTasks,taskValues) {
         td.addEventListener('click', () => {
             newTask = false;
             taskWindow.display()
-            setDetailListeners(taskList,taskValues)
+            setDetailListeners(taskList,taskValues,taskLoad)
         })
     })
 
 
 }
 
-function setDetailListeners (taskList,taskValues) {
+function setDetailListeners (taskList,taskValues,taskLoad) {
     let todoItem = document.querySelectorAll('.todoItem')
     todoItem.forEach(tr => {
+        const taskDetails = taskDetailsWindow(tr,taskList)
         tr.addEventListener('click', () => {
-            taskDetails.setValues(tr,taskList)
+            taskDetails.setValues()
             newTask = false;
+            console.log(newTask)
         })
-        taskValues.changeTask(taskList,tr)
+        if(newTask === false){
+            submitTask.addEventListener('click', () => {
+                taskValues.changeTask(tr,taskList)
+                taskLoad.renderAllTasks(taskList)
+                taskWindow.clearValues()
+                taskWindow.hide()//hides the task displaysetNewTask()
+            }) 
+        }
     })
-
+    
 
 }
 
