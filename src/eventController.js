@@ -37,8 +37,8 @@ submitProject.addEventListener('click', () => {
 
 
 submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
-    const projectTasks = document.querySelectorAll('.projects');
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+    const projectTasks = document.querySelectorAll('.projects');
     if (newTask === true){
         taskValues.addToTaskList(taskValues)
         setListeners(projectTasks,taskValues);//sets the task values
@@ -74,7 +74,7 @@ function setListeners (projectTasks,taskValues) {
         let display = true;
         taskLoad.clearOrDisplayTasks(display)
     })
-    
+    console.log(projectTasks)
     projectTasks.forEach((li) => {
         li.addEventListener('click', (e) => {
             taskLoad.renderProjectsTasks(taskList,li)
@@ -88,14 +88,14 @@ function setListeners (projectTasks,taskValues) {
         td.addEventListener('click', () => {
             newTask = false;
             taskWindow.display()
-            setDetailListeners(taskList,taskValues,taskLoad)
+            setDetailListeners(taskList,taskValues,projectTasks)
         })
     })
 
 
 }
 
-function setDetailListeners (taskList,taskValues,taskLoad) {
+function setDetailListeners (taskList,taskValues,projectTasks) {
     let todoItem = document.querySelectorAll('.todoItem')
     todoItem.forEach(tr => {
         const taskDetails = taskDetailsWindow(tr,taskList)
@@ -107,7 +107,7 @@ function setDetailListeners (taskList,taskValues,taskLoad) {
         if(newTask === false){
             submitTask.addEventListener('click', () => {
                 taskValues.changeTask(tr,taskList)
-                taskLoad.renderAllTasks(taskList)
+                setListeners(projectTasks,taskValues);//sets the task values
                 taskWindow.clearValues()
                 taskWindow.hide()//hides the task displaysetNewTask()
             }) 
