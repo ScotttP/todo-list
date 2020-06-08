@@ -18,12 +18,17 @@ class Tasks {
        return taskList
     }
     changeTask(tr,taskList){
+        let taskNameWindow = document.querySelector('#taskName')
         let indexOfThisTask = tr.id
-        this.taskName = taskName.value
-        taskList[indexOfThisTask].taskName = this.taskName
-        console.log(taskList[indexOfThisTask].taskName )
-        console.log(this.taskName)
-        console.log(taskList)
+
+        taskList[indexOfThisTask].taskName = taskNameWindow.value
+        // taskList[indexOfThisTask].projectFolder = taskProjectFolderWindow.value 
+        // taskList[indexOfThisTask].taskDescription = taskDecriptionWindow.value 
+        // taskList[indexOfThisTask].dueDate = taskdueDateWindow.value
+        // taskList[indexOfThisTask].priority = taskPriorityWindow.value
+        // taskList[indexOfThisTask].taskNotes = taskNotesWindow.value
+
+        // console.log(taskList[indexOfThisTask].taskName )
 
 }
 }

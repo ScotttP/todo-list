@@ -74,7 +74,6 @@ function setListeners (projectTasks,taskValues) {
         let display = true;
         taskLoad.clearOrDisplayTasks(display)
     })
-    console.log(projectTasks)
     projectTasks.forEach((li) => {
         li.addEventListener('click', (e) => {
             taskLoad.renderProjectsTasks(taskList,li)
@@ -82,36 +81,44 @@ function setListeners (projectTasks,taskValues) {
         
     })
 
+   setTaskTdListeners(taskLoad,taskValues)
+
+
+}
+
+function setTaskTdListeners (taskLoad,taskValues,taskList) {
     const task = document.querySelectorAll('.taskNameCardDisplay')
     
     task.forEach(td => {
         td.addEventListener('click', () => {
             newTask = false;
             taskWindow.display()
-            setDetailListeners(taskList,taskValues,projectTasks)
+            taskLoad.renderAllTasks(taskList,taskValues)
+            setDetailListeners(taskList,taskValues,taskLoad,newTask)
         })
     })
-
-
 }
 
-function setDetailListeners (taskList,taskValues,projectTasks) {
+function setDetailListeners (taskList,taskValues,taskLoad,newTask) {
     let todoItem = document.querySelectorAll('.todoItem')
     todoItem.forEach(tr => {
         const taskDetails = taskDetailsWindow(tr,taskList)
         tr.addEventListener('click', () => {
             taskDetails.setValues()
             newTask = false;
-            console.log(newTask)
+            if (newTask === false){
+                submitTask.addEventListener('click', () => {
+                    taskValues.changeTask(tr,taskList)
+                    setTaskTdListeners(taskLoad,taskValues)
+                    taskWindow.clearValues()
+                    taskWindow.hide()//hides the task displaysetNewTask()
+                }) 
+
+            }
+
+        
         })
-        if(newTask === false){
-            submitTask.addEventListener('click', () => {
-                taskValues.changeTask(tr,taskList)
-                setListeners(projectTasks,taskValues);//sets the task values
-                taskWindow.clearValues()
-                taskWindow.hide()//hides the task displaysetNewTask()
-            }) 
-        }
+       
     })
     
 
