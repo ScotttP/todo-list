@@ -98,19 +98,10 @@ function setTrListeners (taskList,taskValues,taskLoad,newTask) {//this listener 
     todoItem.forEach(tr => {
         const taskDetails = taskDetailsWindow(tr,taskList)
         tr.addEventListener('click', () => {
-            newTask = false
             let indexOfThisTask = tr.id
-
-            taskWindow.buttonDisplay(newTask)
-            taskWindow.clearValues()
-            taskDetails.setValues(indexOfThisTask)
-            taskWindow.display()
+            trFunctions(taskDetails,tr,taskWindow,taskList,taskValues,taskLoad,todoItem,indexOfThisTask)
             saveTask.addEventListener('click', () => {
-                console.log(indexOfThisTask)
-                taskValues.changeTask(taskList,indexOfThisTask)
-                taskLoad.renderAllTasks(taskList)
-                setTrListeners(taskList,taskValues,taskLoad,newTask)
-                taskWindow.hide()//hides the task displaysetNewTask()
+                index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
                 removeListeners (taskList,taskValues,taskLoad,todoItem)
             }) 
         })
@@ -119,27 +110,33 @@ function setTrListeners (taskList,taskValues,taskLoad,newTask) {//this listener 
 
 
 }
+function trFunctions (taskDetails,tr,taskWindow,taskList,taskValues,taskLoad,todoItem,indexOfThisTask) {
+    newTask = false
+    taskWindow.buttonDisplay(newTask)
+    taskWindow.clearValues()
+    index(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
+    taskDetails.setValues(indexOfThisTask)
+    taskWindow.display()
+}
+function index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem){
+    taskValues.changeTask(taskList,indexOfThisTask)
+    taskLoad.renderAllTasks(taskList)
+    setTrListeners(taskList,taskValues,taskLoad,newTask)
+    taskWindow.hide()//hides the task displaysetNewTask()
+}
 
 function removeListeners (taskList,taskValues,taskLoad,todoItem) {//this removes the listeners from the tr elements and save task button
     todoItem.forEach(tr => {
         const taskDetails = taskDetailsWindow(tr,taskList)
-        console.log('listener Removed')
-        tr.removeEventListener('click', () => {
+        tr.addEventListener('click', () => {
             let indexOfThisTask = tr.id
-            taskWindow.clearValues()
-            taskDetails.setValues(indexOfThisTask)
-            taskWindow.display()
- 
-            saveTask.removeEventListener('click', () => {
-                console.log(indexOfThisTask)
-                taskValues.changeTask(taskList,indexOfThisTask)
-                taskLoad.renderAllTasks(taskList)
-                setTrListeners(taskList,taskValues,taskLoad,newTask)
-                
-                taskWindow.hide()//hides the task displaysetNewTask()
+            trFunctions(taskDetails,tr,taskWindow,taskList,taskValues,taskLoad,todoItem,indexOfThisTask)
+            saveTask.addEventListener('click', () => {
+                index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
+                removeListeners (taskList,taskValues,taskLoad,todoItem)
             }) 
-            
         })
+        
     })
     submitProject.removeEventListener('click', () => {//submits a project
         setProjectValues()
