@@ -94,35 +94,36 @@ function setProjectTasksListener (projectTasks,taskLoad){//this listener display
 
 function setTrListeners (taskList,taskValues,taskLoad,newTask) {//this listener allows you to view the task values in the form and submit edits.
     let todoItem = document.querySelectorAll('.todoItem')
+    
     todoItem.forEach(tr => {
         const taskDetails = taskDetailsWindow(tr,taskList)
-
         tr.addEventListener('click', () => {
             newTask = false
-            taskWindow.buttonDisplay(newTask)
             let indexOfThisTask = tr.id
+
+            taskWindow.buttonDisplay(newTask)
             taskWindow.clearValues()
             taskDetails.setValues(indexOfThisTask)
             taskWindow.display()
- 
             saveTask.addEventListener('click', () => {
                 console.log(indexOfThisTask)
                 taskValues.changeTask(taskList,indexOfThisTask)
                 taskLoad.renderAllTasks(taskList)
                 setTrListeners(taskList,taskValues,taskLoad,newTask)
-                
                 taskWindow.hide()//hides the task displaysetNewTask()
-                removeListeners(taskList,taskValues,taskLoad,todoItem)
+                removeListeners (taskList,taskValues,taskLoad,todoItem)
             }) 
-            
         })
+        
     })
+
+
 }
 
 function removeListeners (taskList,taskValues,taskLoad,todoItem) {//this removes the listeners from the tr elements and save task button
     todoItem.forEach(tr => {
         const taskDetails = taskDetailsWindow(tr,taskList)
-        console.log('remove')
+        console.log('listener Removed')
         tr.removeEventListener('click', () => {
             let indexOfThisTask = tr.id
             taskWindow.clearValues()
@@ -140,6 +141,16 @@ function removeListeners (taskList,taskValues,taskLoad,todoItem) {//this removes
             
         })
     })
+    submitProject.removeEventListener('click', () => {//submits a project
+        setProjectValues()
+     })
+     
+     submitTask.removeEventListener('click', () => {//adds event listeners to the submit task button
+         let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
+         setTaskValues(taskValues)
+         
+         
+     })
 }
 
 

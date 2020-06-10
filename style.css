@@ -151,6 +151,9 @@
         #allTasks:hover {
             cursor: pointer;
         }
+        tr {
+            border: 3px black solid;
+        }
         tr:hover{
             cursor: pointer;
             background-color: red;

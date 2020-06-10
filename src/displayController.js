@@ -46,6 +46,7 @@ const taskPopUpWindow = () => {
 
 const taskDetailsWindow = (tr,taskList) => {//displays the details of the task in the taskForm
     function setValues (indexOfThisTask) {
+    
         taskNameWindow.value = taskList[indexOfThisTask].taskName
         taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder
         taskDecriptionWindow.value = taskList[indexOfThisTask].taskDescription
