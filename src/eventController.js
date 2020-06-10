@@ -30,6 +30,7 @@ cancelDisplay.addEventListener('click', () =>{//closes the task form
     newTask = false;
     taskWindow.hide()
     taskWindow.clearValues()
+
 })
 
 submitProject.addEventListener('click', () => {//submits a project
@@ -99,19 +100,29 @@ function setTrListeners (taskList,taskValues,taskLoad,newTask) {//this listener 
         const taskDetails = taskDetailsWindow(tr,taskList)
         tr.addEventListener('click', (e) => {
             indexOfThisTask = e.target.id
-            console.log(indexOfThisTask)//only logs 1 <tr> id
+
+            //console.log(indexOfThisTask) //only logs 1 <tr> id <---------
+
             trFunctions(taskDetails,taskWindow,indexOfThisTask)
             saveIndex(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
         })
+        
+
     })
+
 }
 function saveIndex(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem){
-    console.log(indexOfThisTask)//only logs 1 <tr> id
+    console.log(indexOfThisTask)//only logs 1 <tr> id <----------
+    
     saveTask.addEventListener('click', () => {
-        console.log(indexOfThisTask)//loops through all of the <tr> elements and logs the ids
-        //index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
+
+    console.log(indexOfThisTask)//loops through all of the <tr> elements and logs the ids  <---------
+   
+    //index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
     }) 
+    
 }
+
 function trFunctions (taskDetails,taskWindow,indexOfThisTask) {
     newTask = false
     taskWindow.buttonDisplay(newTask)
