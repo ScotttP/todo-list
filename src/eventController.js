@@ -16,6 +16,7 @@ const allTasks = document.querySelector('#allTasks');
 const windowDisplay = document.querySelector('#addTaskButton');
 const cancelDisplay = document.querySelector('#cancel');
 const taskWindow = taskPopUpWindow()
+const projectLoad = projectLoader();//assigns the projectLoad factory function to a variable
 
 
 windowDisplay.addEventListener('click', () =>{//displays the task form
@@ -38,18 +39,17 @@ submitProject.addEventListener('click', () => {//submits a project
 submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     setTaskValues(taskValues)
-    
+    removeListeners (taskList)
     
 })
 
 function setProjectValues () {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
-    const projectLoad = projectLoader(projectValues,projectList);//assigns the projectLoad factory function to a variable
-    
+    console.log(projectList)
     if(projectValues.projectName !== ''){
         if (!projectList.includes(projectValues.projectName)){//ensures no project name is duplicated when executing the rest of the code.
             projectValues.addToProjectList(projectValues)
-            projectLoad.loadProjectListOptions(projectValues)
+            projectLoad.loadProjectListOptions(projectList)
             projectLoad.renderProjectCard(projectValues,projectList)
             document.getElementById('addProjectForm').value = '';//clears input of projectForm  
         }else{
@@ -94,27 +94,28 @@ function setProjectTasksListener (projectTasks,taskLoad){//this listener display
 
 function setTrListeners (taskList,taskValues,taskLoad,newTask) {//this listener allows you to view the task values in the form and submit edits.
     let todoItem = document.querySelectorAll('.todoItem')
-    
-    todoItem.forEach(tr => {
+    let indexOfThisTask ;
+    todoItem.forEach((tr) => {
         const taskDetails = taskDetailsWindow(tr,taskList)
-        tr.addEventListener('click', () => {
-            let indexOfThisTask = tr.id
-            trFunctions(taskDetails,tr,taskWindow,taskList,taskValues,taskLoad,todoItem,indexOfThisTask)
-            saveTask.addEventListener('click', () => {
-                index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
-                removeListeners (taskList,taskValues,taskLoad,todoItem)
-            }) 
+        tr.addEventListener('click', (e) => {
+            indexOfThisTask = e.target.id
+            console.log(indexOfThisTask)//only logs 1 <tr> id
+            trFunctions(taskDetails,taskWindow,indexOfThisTask)
+            saveIndex(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
         })
-        
     })
-
-
 }
-function trFunctions (taskDetails,tr,taskWindow,taskList,taskValues,taskLoad,todoItem,indexOfThisTask) {
+function saveIndex(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem){
+    console.log(indexOfThisTask)//only logs 1 <tr> id
+    saveTask.addEventListener('click', () => {
+        console.log(indexOfThisTask)//loops through all of the <tr> elements and logs the ids
+        //index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
+    }) 
+}
+function trFunctions (taskDetails,taskWindow,indexOfThisTask) {
     newTask = false
     taskWindow.buttonDisplay(newTask)
     taskWindow.clearValues()
-    index(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
     taskDetails.setValues(indexOfThisTask)
     taskWindow.display()
 }
@@ -125,18 +126,19 @@ function index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem){
     taskWindow.hide()//hides the task displaysetNewTask()
 }
 
-function removeListeners (taskList,taskValues,taskLoad,todoItem) {//this removes the listeners from the tr elements and save task button
-    todoItem.forEach(tr => {
+function removeListeners (taskList) {//this removes the listeners from the tr elements and save task button
+    let todoItem = document.querySelectorAll('.todoItem')
+    let indexOfThisTask ;
+    todoItem.forEach((tr) => {
+        console.log('remove')
         const taskDetails = taskDetailsWindow(tr,taskList)
-        tr.addEventListener('click', () => {
-            let indexOfThisTask = tr.id
-            trFunctions(taskDetails,tr,taskWindow,taskList,taskValues,taskLoad,todoItem,indexOfThisTask)
-            saveTask.addEventListener('click', () => {
-                index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
-                removeListeners (taskList,taskValues,taskLoad,todoItem)
-            }) 
+        tr.removeEventListener('click', (e) => {
+            indexOfThisTask = e.target.id
+            //console.log(indexOfThisTask)
+            trFunctions(taskDetails,taskWindow,indexOfThisTask)
+            saveIndex(indexOfThisTask)
         })
-        
+       
     })
     submitProject.removeEventListener('click', () => {//submits a project
         setProjectValues()

@@ -142,9 +142,9 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     }
 }
 
-const projectLoader = (projectValues,projectList) => {//loads projets to the projects area
+const projectLoader = () => {//loads projets to the projects area
 
-    function renderProjectCard () {//takes the projectList array and displays the project names on the page
+    function renderProjectCard (projectValues,projectList) {//takes the projectList array and displays the project names on the page
         const projectListDiv = document.querySelector('.projectList');
         const home = document.querySelector('#allTasks')
         
@@ -157,20 +157,22 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
             addProj.id = project;
             addProj.textContent = project;
             projectListDiv.appendChild(addProj)
-            addDeleteButtonAndListener(addProj,project)
+            addDeleteButtonAndListener(addProj,project,projectValues)
         }
     }
-    function loadProjectListOptions (projectValues) {//this loads the project name options in the task pop up window 
+    function loadProjectListOptions (projectList) {//this loads the project name options in the task pop up window 
         //need to refactor is so it comes from the project list
         const projectFolder = document.querySelector('#projectFolder');
-    
-        let option = document.createElement('option');
-        option.value= projectValues.projectName;
-        option.text = projectValues.projectName;
-        projectFolder.appendChild(option)
+        projectFolder.innerHTML = '';
         
+        for (let projects of projectList){
+            let option = document.createElement('option');
+            option.value= projects;
+            option.text = projects;
+            projectFolder.appendChild(option)
+        }
     }
-    function addDeleteButtonAndListener (addProj,project) {//adds the delete button and listener with delete button.
+    function addDeleteButtonAndListener (addProj,project,projectValues) {//adds the delete button and listener with delete button.
         let deleteProjButton = document.createElement('i')
         deleteProjButton.setAttribute('class', 'fa fa-close')
         deleteProjButton.setAttribute('id','deleteProjButton')
@@ -180,7 +182,7 @@ const projectLoader = (projectValues,projectList) => {//loads projets to the pro
         deleteProjButton.addEventListener('click', () => {
             projectValues.deleteFromProjectList(projectList,addProj)//deletes from projectList array
             renderProjectCard(projectValues,projectList)//renders the new project list
-            loadProjectListOptions(projectValues)
+            loadProjectListOptions(projectList)
          })
     }
     return {

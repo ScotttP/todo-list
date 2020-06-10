@@ -35,7 +35,7 @@ class Tasks {
         taskList[indexOfThisTask].priority = taskPriorityWindow.value
         taskList[indexOfThisTask].taskNotes = taskNotesWindow.value
 
-        console.log(taskList[indexOfThisTask] )
+        //console.log(taskList[indexOfThisTask] )
 
 }
 }
