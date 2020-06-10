@@ -151,6 +151,10 @@
         #allTasks:hover {
             cursor: pointer;
         }
+        tr:hover{
+            cursor: pointer;
+            background-color: red;
+        }
 
         
 

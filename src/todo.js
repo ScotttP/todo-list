@@ -17,16 +17,23 @@ class Tasks {
         taskList.splice(index,1)
        return taskList
     }
-    changeTask(tr,taskList){
-        let taskNameWindow = document.querySelector('#taskName')
-        let indexOfThisTask = tr.id
+    changeTask(taskList,indexOfThisTask){
+        let taskNameWindow = document.getElementById('taskName')
+        let taskProjectFolderWindow = document.getElementById('projectFolder')
+        let taskDecriptionWindow = document.getElementById('taskDescription')
+        let taskdueDateWindow = document.getElementById('dueDate')
+        let taskPriorityWindow = document.getElementById('priority')
+        let taskNotesWindow = document.getElementById('taskNotes')
 
+        // console.log(taskList[indexOfThisTask].taskName )
+        // console.log(taskNameWindow.value)
+        //console.log(indexOfThisTask)
         taskList[indexOfThisTask].taskName = taskNameWindow.value
-        // taskList[indexOfThisTask].projectFolder = taskProjectFolderWindow.value 
-        // taskList[indexOfThisTask].taskDescription = taskDecriptionWindow.value 
-        // taskList[indexOfThisTask].dueDate = taskdueDateWindow.value
-        // taskList[indexOfThisTask].priority = taskPriorityWindow.value
-        // taskList[indexOfThisTask].taskNotes = taskNotesWindow.value
+        taskList[indexOfThisTask].projectFolder = taskProjectFolderWindow.value 
+        taskList[indexOfThisTask].taskDescription = taskDecriptionWindow.value 
+        taskList[indexOfThisTask].dueDate = taskdueDateWindow.value
+        taskList[indexOfThisTask].priority = taskPriorityWindow.value
+        taskList[indexOfThisTask].taskNotes = taskNotesWindow.value
 
         // console.log(taskList[indexOfThisTask].taskName )
 

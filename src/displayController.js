@@ -16,12 +16,23 @@ const taskPopUpWindow = () => {
     }
     function hide () {
         document.getElementById('addTaskWindowContainer').style.display = 'none';//closes window
+       
     }
-    function clearValues () {
+    function clearValues () {//clears the task form
         taskNameWindow.value = '';
         taskDecriptionWindow.value = '';
         taskdueDateWindow.value = '';
         taskNotesWindow.value = '';
+    }
+    function buttonDisplay (newTask){//displays which button based on if the user is editing or creating a new task
+        
+        if (newTask === false){
+            document.getElementById('saveButton').style.display = 'block';
+            document.getElementById('submitButton').style.display = 'none';
+        }else if (newTask === true){
+            document.getElementById('saveButton').style.display = 'none';
+            document.getElementById('submitButton').style.display = 'block';
+        }
     }
     
 
@@ -29,13 +40,12 @@ const taskPopUpWindow = () => {
         display,
         hide,
         clearValues,
+        buttonDisplay
     }
 }
 
-const taskDetailsWindow = (tr,taskList) => {//displays the details of the task
-    function setValues () {
-        let indexOfThisTask = tr.id
-     
+const taskDetailsWindow = (tr,taskList) => {//displays the details of the task in the taskForm
+    function setValues (indexOfThisTask) {
         taskNameWindow.value = taskList[indexOfThisTask].taskName
         taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder
         taskDecriptionWindow.value = taskList[indexOfThisTask].taskDescription
@@ -58,7 +68,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             
             let tr = document.createElement('tr')
             tr.className = "todoItem"
-            tr.id = `${index}` 
+            tr.id = `${index}` //index of the task in the taskList
             tr.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
         
             let checkTd = document.createElement('td')
@@ -85,18 +95,18 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     }
     function clearOrDisplayTasks (display) {
         let allTaskCards = document.getElementsByClassName('todoItem')
-        if (display === false){
+        if (display === false){//if the display is set to false, hide all of the tasks.
             for (let i = 0; i<allTaskCards.length;++i){
                 allTaskCards[i].style.display = 'none'
             }
-        }else if (display === true){
+        }else if (display === true){// if the display is true show all of the tasks.
             for (let i = 0; i<allTaskCards.length;++i){
                 allTaskCards[i].style.display = 'block'
             }
         }
 
     }
-    function renderProjectsTasks (taskList,li) {
+    function renderProjectsTasks (taskList,li) {//based on which project name is clicked, it displays all the tasks with that specific project folder
         let display = false
         clearOrDisplayTasks(display)
 
@@ -110,7 +120,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         }
     
     }
-    function addDeleteTaskAndListener (tr,index) {
+    function addDeleteTaskAndListener (tr,index) { //adds the delete button and listener which deletes the specific task in task list
         let deleteTd = document.createElement('td')
         let deleteTask = document.createElement('button')
         deleteTask.setAttribute('type','button')
