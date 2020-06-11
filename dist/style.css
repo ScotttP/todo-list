@@ -154,7 +154,7 @@
         tr {
             border: 3px black solid;
         }
-        tr:hover{
+        .edit:hover{
             cursor: pointer;
             background-color: red;
         }
