@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>ToDo List</title>
 </head>
 <body>
@@ -16,6 +17,7 @@
                 <h2>Projects</h2>
                 <div class="sideBarContainer">
                     <ul class="projectList">
+                        <li id="allTasks">All Tasks</li>
                        <!--Add projects here-->
                     </ul>
                     <div class="addProjectContainer">
@@ -31,7 +33,9 @@
                         <button class="addClick"id ="addTaskButton">+ Add Task</button>
                     </div>
                     <table class="todoTasks">
-                        <!--add todo tasks here-->
+                        <tbody id='tbody'>
+                            <!--add todo tasks here-->
+                        </tbody>
                     </table>
                 </div>
                 <div id="addTaskWindowContainer">
@@ -43,7 +47,7 @@
                                 <input id="taskName" type="text">
                             <label>Project Folder:</label>
                                 <select id="projectFolder">
-                                    <option class="defaultProject">Default</option><!--add project folers here-->
+                                
                                 </select>
                             <label>Description:</label>
                                 <input id="taskDescription" type="text">
@@ -57,7 +61,8 @@
                                 </select>
                             <label>Notes:</label>
                             <textarea id="taskNotes" type="text"></textarea>
-                            <button id="submit" type="button">Submit</button>
+                            <button id="saveButton" type="button">Save</button>
+                            <button id="submitButton" type="button">New Task</button>
                         </form>
                     </div>
                 </div>
