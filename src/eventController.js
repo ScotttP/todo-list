@@ -117,7 +117,7 @@ function saveIndex(indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem
     saveTask.addEventListener('click', () => {
 
     console.log(indexOfThisTask)//loops through all of the <tr> elements and logs the ids  <---------
-   
+    taskWindow.hide()
     //index (indexOfThisTask,taskValues,taskList,taskLoad,newTask,todoItem)
     }) 
     

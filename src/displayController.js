@@ -44,7 +44,7 @@ const taskPopUpWindow = () => {
     }
 }
 
-const taskDetailsWindow = (tr,taskList) => {//displays the details of the task in the taskForm
+const taskDetailsWindow = (td,taskList) => {//displays the details of the task in the taskForm
     function setValues (indexOfThisTask) {
     
         taskNameWindow.value = taskList[indexOfThisTask].taskName
@@ -71,12 +71,19 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             tr.className = "todoItem"
             tr.id = `${index}` //index of the task in the taskList
             tr.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
+
+            let edit = document.createElement('button')
+            edit.classList = 'edit'
+            edit.id = `${index}`
+            edit.textContent = 'Edit this task'
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
             checkBox.setAttribute('type','checkbox')
+            tr.appendChild(edit)
             checkTd.appendChild(checkBox)
             tr.appendChild(checkTd)
+            
 
             for (let tasks in taskList[index]){
                 let td = document.createElement('td')
