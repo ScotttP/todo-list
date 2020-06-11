@@ -94,11 +94,11 @@ function setProjectTasksListener (projectTasks,taskLoad){//this listener display
 }
 
 function setTrListeners (taskList,taskValues,taskLoad,newTask) {//this listener allows you to view the task values in the form and submit edits.
-    let todoItem = document.querySelectorAll('.todoItem')
+    let edit = document.querySelectorAll('.edit')
     let indexOfThisTask ;
-    todoItem.forEach((tr) => {
+    edit.forEach((button) => {
         const taskDetails = taskDetailsWindow(tr,taskList)
-        tr.addEventListener('click', (e) => {
+        button.addEventListener('click', (e) => {
             indexOfThisTask = e.target.id
 
             //console.log(indexOfThisTask) //only logs 1 <tr> id <---------
