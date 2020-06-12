@@ -1,6 +1,4 @@
-import { Tasks, taskList } from "./todo.js"
-import { Projects,projectList } from "./projects.js"
-
+import { projectList } from "./projects.js"
 
 let taskNameWindow = document.getElementById('taskName')
 let taskProjectFolderWindow = document.getElementById('projectFolder')
@@ -44,9 +42,9 @@ const taskPopUpWindow = () => {
     }
 }
 
-const taskDetailsWindow = (td,taskList) => {//displays the details of the task in the taskForm
+const taskDetailsWindow = (taskList) => {//displays the details of the task in the taskForm
     function setValues (indexOfThisTask) {
-    
+
         taskNameWindow.value = taskList[indexOfThisTask].taskName
         taskProjectFolderWindow.value = taskList[indexOfThisTask].projectFolder
         taskDecriptionWindow.value = taskList[indexOfThisTask].taskDescription
@@ -72,16 +70,18 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             tr.id = `${index}` //index of the task in the taskList
             tr.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
 
-            let edit = document.createElement('button')
-            edit.classList = 'editButton'
+            let edit = document.createElement('i')
+            edit.classList = 'fa fa-pencil-square-o'
+            edit.setAttribute('aria-hidden','true')
+            edit.setAttribute('name','editButton')
             edit.id = `${index}`
-            edit.textContent = 'Edit this task'
+          
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
             checkBox.setAttribute('type','checkbox')
 
-            tr.appendChild(edit)
+            
             checkTd.appendChild(checkBox)
             tr.appendChild(checkTd)
             
@@ -96,6 +96,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                     tr.removeChild(td)
                 }
             }
+            tr.appendChild(edit)
             addDeleteTaskAndListener(tr,index)
             tBody.appendChild(tr)
             
@@ -131,11 +132,11 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     }
     function addDeleteTaskAndListener (tr,index) { //adds the delete button and listener which deletes the specific task in task list
         let deleteTd = document.createElement('td')
-        let deleteTask = document.createElement('button')
-        deleteTask.setAttribute('type','button')
-        deleteTask.setAttribute('id','deleteTask')
+        let deleteTask = document.createElement('i')
+        deleteTask.setAttribute('type','icon')
+        deleteTask.setAttribute('class','fa fa-trash')
+        deleteTask.setAttribute('name','deleteTask')
         deleteTask.setAttribute('data-index',`${index}`)
-        deleteTask.textContent = 'Delete'
         deleteTask.addEventListener('click', () => {
             taskValues.deleteFromTaskLIst(taskList,index)
             renderAllTasks(taskList)
@@ -200,6 +201,14 @@ const projectLoader = () => {//loads projets to the projects area
     }
     
 }
+const storage = (projectValues) => {
+    function setStorage () {
+        localStorage.setItem('projectValues', projectValues )
+    
+       
+    }
+    
+    return {setStorage}
+}
 
-
-export{taskPopUpWindow,projectLoader,taskLoader,taskDetailsWindow}
+export{taskPopUpWindow,projectLoader,taskLoader,taskDetailsWindow,storage}

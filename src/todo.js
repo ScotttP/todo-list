@@ -25,9 +25,6 @@ class Tasks {
         let taskPriorityWindow = document.getElementById('priority')
         let taskNotesWindow = document.getElementById('taskNotes')
 
-        // console.log(taskList[indexOfThisTask].taskName )
-        // console.log(taskNameWindow.value)
-        //console.log(indexOfThisTask)
         taskList[indexOfThisTask].taskName = taskNameWindow.value
         taskList[indexOfThisTask].projectFolder = taskProjectFolderWindow.value 
         taskList[indexOfThisTask].taskDescription = taskDecriptionWindow.value 
@@ -35,9 +32,7 @@ class Tasks {
         taskList[indexOfThisTask].priority = taskPriorityWindow.value
         taskList[indexOfThisTask].taskNotes = taskNotesWindow.value
 
-        //console.log(taskList[indexOfThisTask] )
-
-}
+    }
 }
 
 export {Tasks,taskList}
