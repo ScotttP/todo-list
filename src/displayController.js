@@ -73,7 +73,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             tr.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
 
             let edit = document.createElement('button')
-            edit.classList = 'edit'
+            edit.classList = 'editButton'
             edit.id = `${index}`
             edit.textContent = 'Edit this task'
         
