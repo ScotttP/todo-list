@@ -80,6 +80,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
             checkBox.setAttribute('type','checkbox')
+
             tr.appendChild(edit)
             checkTd.appendChild(checkBox)
             tr.appendChild(checkTd)
