@@ -5,6 +5,7 @@ import {taskDetailsWindow} from "./displayController.js"
 const events = () => {
 
 let newTask // this controls what
+let reload
 
 const submitProject = document.querySelector('#addProjectButton');
 const projectForm = document.querySelector('#addProjectForm')
@@ -31,7 +32,7 @@ cancelDisplay.addEventListener('click', () =>{//closes the task form
 
 })
 
-submitProject.addEventListener('click', (e) => {//submits a project
+submitProject.addEventListener('click', () => {//submits a project
    setProjectValues()
 })
 projectForm.addEventListener('keydown', (e) => {//submits a project
@@ -47,14 +48,15 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
 })
 
 function setProjectValues () {
-    let projectValues = new Projects (); //when a project add button clicked the property values are set
-    console.log(projectValues)
-    if(projectValues.projectName !== ''){
-        if (!projectList.includes(projectValues.projectName)){//ensures no project name is duplicated when executing the rest of the code.
-            projectValues.addToProjectList(projectValues)
-            projectValues.saveProjectList(projectList)
+    //when a project add button clicked the property values are set
+    let projectFunctions = new Projects ();
+    let name = document.getElementById("addProjectForm").value
+    if(name !== ''){
+        if (!projectList.includes(name)){//ensures no project name is duplicated when executing the rest of the code.
+            projectFunctions.addToProjectList(name)
+            projectFunctions.saveProjectList(projectList)
             projectLoad.loadProjectListOptions(projectList)
-            projectLoad.renderProjectCard(projectValues,projectList)
+            projectLoad.renderProjectCard(projectFunctions,projectList)
             document.getElementById('addProjectForm').value = '';//clears input of projectForm  
         }else{
             alert(`Can't Duplicate Project Names`)

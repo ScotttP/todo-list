@@ -1,4 +1,4 @@
-import { projectList,projectValues } from "./projects.js"
+import { projectList } from "./projects.js"
 
 let taskNameWindow = document.getElementById('taskName')
 let taskProjectFolderWindow = document.getElementById('projectFolder')
@@ -153,9 +153,9 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 
 const projectLoader = () => {//loads projets to the projects area
 
-    function renderProjectCard (projectValues,projectList) {//takes the projectList array and displays the project names on the page
-        if (projectList === [""]){
-            console.log('true')
+    function renderProjectCard (projectFunctions,projectList) {//takes the projectList array and displays the project names on the page
+        if (projectList === undefined || projectList[0] === ''){//prevents a blank name from being rendered on the page.
+            return
         }
         const projectListDiv = document.querySelector('.projectList');
         const home = document.querySelector('#allTasks')
@@ -163,39 +163,40 @@ const projectLoader = () => {//loads projets to the projects area
         projectListDiv.innerHTML = '';//resets the display so all existing values aren't displayed
         projectListDiv.appendChild(home)
 
-        for (let project of projectList){
+        for (let project in projectList){
             let addProj = document.createElement('li');
             addProj.className = 'projects';
             addProj.id = project;
-            addProj.textContent = project;
+            addProj.textContent = projectList[project];
             projectListDiv.appendChild(addProj)
-            addDeleteButtonAndListener(addProj,project,projectValues)
+            addDeleteButtonAndListener(addProj,project,projectFunctions,projectList)
         }
     }
     function loadProjectListOptions (projectList) {//this loads the project name options in the task pop up window 
-        //need to refactor is so it comes from the project list
+       
         const projectFolder = document.querySelector('#projectFolder');
         projectFolder.innerHTML = '';
         
-        for (let projects of projectList){
+        for (let projects in projectList){
             let option = document.createElement('option');
             option.value= projects;
-            option.text = projects;
+            option.text = projectList[projects];
             projectFolder.appendChild(option)
         }
     }
-    function addDeleteButtonAndListener (addProj,project,projectValues) {//adds the delete button and listener with delete button.
+    function addDeleteButtonAndListener (addProj,project,projectFunctions,projectList) {//adds the delete button and listener with delete button.
         let deleteProjButton = document.createElement('i')
         deleteProjButton.setAttribute('class', 'fa fa-close')
         deleteProjButton.setAttribute('id','deleteProjButton')
-        deleteProjButton.setAttribute('value', project)
+        deleteProjButton.setAttribute('value', projectList[project])
         addProj.appendChild(deleteProjButton)
         
 
         deleteProjButton.addEventListener('click', () => {
-            projectValues.deleteFromProjectList(projectList,addProj)//deletes from projectList array
-            projectValues.saveProjectList(projectList)
-            renderProjectCard(projectValues,projectList)//renders the new project list
+            console.log(deleteProjButton.value)
+            projectFunctions.deleteFromProjectList(projectList,addProj)//deletes from projectList array
+            projectFunctions.saveProjectList(projectList)
+            renderProjectCard(projectFunctions,projectList)//renders the new project list
             loadProjectListOptions(projectList)
             
          })

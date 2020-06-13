@@ -1,20 +1,15 @@
 let projectList = [];//sets to empty on initial load
 class Projects {
     
-    constructor (){
-        this.projectName = document.getElementById('addProjectForm').value
-        this.projectTasksList = [];
-    }
-    
-    addToProjectList (projectValues) {//adds project to list 
-        projectList.push(projectValues.projectName)
+    addToProjectList (name) {//adds project to list 
+        projectList.push(name)
         return projectList
     }
     
-    saveProjectList (projectList,projectValues) {
+    saveProjectList (projectList) {
+        console.log(projectList)
         localStorage.setItem('savedProjectList', projectList)
-        localStorage.setItem('savedProjectValues', projectValues)
-        
+
     }
 
     deleteFromProjectList (projectList,addProj){//deletes project from list
