@@ -1,6 +1,6 @@
 import { Tasks,taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
-import {taskPopUpWindow,projectLoader,taskLoader,storage} from "./displayController.js"
+import {taskPopUpWindow,projectLoader,taskLoader} from "./displayController.js"
 import {taskDetailsWindow} from "./displayController.js"
 const events = () => {
 
@@ -15,7 +15,6 @@ const windowDisplay = document.querySelector('#addTaskButton');
 const cancelDisplay = document.querySelector('#cancel');
 const taskWindow = taskPopUpWindow();
 const projectLoad = projectLoader();//assigns the projectLoad factory function to a variable
-const loadStorage = storage();
 
 
 windowDisplay.addEventListener('click', () =>{//displays the task form
@@ -34,15 +33,11 @@ cancelDisplay.addEventListener('click', () =>{//closes the task form
 
 submitProject.addEventListener('click', (e) => {//submits a project
    setProjectValues()
-   console.log(e)
-   
 })
 projectForm.addEventListener('keydown', (e) => {//submits a project
     if(e.keyCode === 13){
-        setProjectValues()
-        
+        setProjectValues();
     }
-    
  })
 
 submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
@@ -53,10 +48,11 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
 
 function setProjectValues () {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
-    
+
     if(projectValues.projectName !== ''){
         if (!projectList.includes(projectValues.projectName)){//ensures no project name is duplicated when executing the rest of the code.
             projectValues.addToProjectList(projectValues)
+            projectValues.saveProjectList(projectList)
             projectLoad.loadProjectListOptions(projectList)
             projectLoad.renderProjectCard(projectValues,projectList)
             document.getElementById('addProjectForm').value = '';//clears input of projectForm  
@@ -64,6 +60,7 @@ function setProjectValues () {
             alert(`Can't Duplicate Project Names`)
         }
     }
+
     
 }
 function callDisplayFunctions (taskValues) {//sets the task values and calls all listener functions
@@ -140,6 +137,7 @@ function renderChangedTasks(indexOfThisTask,taskValues,taskList,taskLoad,newTask
     setEditButtonListeners(taskList,taskValues,taskLoad,newTask)
     taskWindow.hide()//hides the task displaysetNewTask()
 }
+return {projectLoad,setProjectValues}
 
 }
 

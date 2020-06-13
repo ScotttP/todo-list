@@ -1,4 +1,4 @@
-import { projectList } from "./projects.js"
+import { projectList,projectValues } from "./projects.js"
 
 let taskNameWindow = document.getElementById('taskName')
 let taskProjectFolderWindow = document.getElementById('projectFolder')
@@ -154,6 +154,9 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 const projectLoader = () => {//loads projets to the projects area
 
     function renderProjectCard (projectValues,projectList) {//takes the projectList array and displays the project names on the page
+        if (projectList === [""]){
+            console.log('true')
+        }
         const projectListDiv = document.querySelector('.projectList');
         const home = document.querySelector('#allTasks')
         
@@ -187,11 +190,14 @@ const projectLoader = () => {//loads projets to the projects area
         deleteProjButton.setAttribute('id','deleteProjButton')
         deleteProjButton.setAttribute('value', project)
         addProj.appendChild(deleteProjButton)
+        
 
         deleteProjButton.addEventListener('click', () => {
             projectValues.deleteFromProjectList(projectList,addProj)//deletes from projectList array
+            projectValues.saveProjectList(projectList)
             renderProjectCard(projectValues,projectList)//renders the new project list
             loadProjectListOptions(projectList)
+            
          })
     }
     return {
@@ -201,14 +207,6 @@ const projectLoader = () => {//loads projets to the projects area
     }
     
 }
-const storage = (projectValues) => {
-    function setStorage () {
-        localStorage.setItem('projectValues', projectValues )
-    
-       
-    }
-    
-    return {setStorage}
-}
 
-export{taskPopUpWindow,projectLoader,taskLoader,taskDetailsWindow,storage}
+
+export{taskPopUpWindow,projectLoader,taskLoader,taskDetailsWindow}
