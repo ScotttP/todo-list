@@ -154,9 +154,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 const projectLoader = () => {//loads projets to the projects area
 
     function renderProjectCard (projectFunctions,projectList) {//takes the projectList array and displays the project names on the page
-        if (projectList === undefined || projectList[0] === ''){//prevents a blank name from being rendered on the page.
-            return
-        }
+   
         const projectListDiv = document.querySelector('.projectList');
         const home = document.querySelector('#allTasks')
         
@@ -164,6 +162,7 @@ const projectLoader = () => {//loads projets to the projects area
         projectListDiv.appendChild(home)
 
         for (let project in projectList){
+            
             let addProj = document.createElement('li');
             addProj.className = 'projects';
             addProj.id = project;

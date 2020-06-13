@@ -1,4 +1,4 @@
-let projectList = [];//sets to empty on initial load
+let projectList = localStorage.getItem('savedProjectList').split(',');//sets to empty on initial load
 class Projects {
     
     addToProjectList (name) {//adds project to list 
