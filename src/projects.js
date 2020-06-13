@@ -14,7 +14,7 @@ class Projects {
     saveProjectList (projectList,projectValues) {
         localStorage.setItem('savedProjectList', projectList)
         localStorage.setItem('savedProjectValues', projectValues)
-        console.log(projectValues)
+        
     }
 
     deleteFromProjectList (projectList,addProj){//deletes project from list

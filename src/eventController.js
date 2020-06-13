@@ -48,7 +48,7 @@ submitTask.addEventListener('click', () => {//adds event listeners to the submit
 
 function setProjectValues () {
     let projectValues = new Projects (); //when a project add button clicked the property values are set
-
+    console.log(projectValues)
     if(projectValues.projectName !== ''){
         if (!projectList.includes(projectValues.projectName)){//ensures no project name is duplicated when executing the rest of the code.
             projectValues.addToProjectList(projectValues)
