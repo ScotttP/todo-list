@@ -13,6 +13,14 @@ class Tasks {
         taskList.push(taskValues)
         return taskList
     }
+    saveTaskList (taskList) {
+        for (let index in taskList){
+            localStorage.setItem('savedTaskList'+index, JSON.stringify(taskList))
+            console.log(taskList)
+        }
+        
+        
+    }
     deleteFromTaskLIst (taskList,index){
         taskList.splice(index,1)
        return taskList

@@ -5,12 +5,11 @@ import {taskDetailsWindow} from "./displayController.js"
 const events = () => {
 
 let newTask // this controls what
-let reload
 
 const submitProject = document.querySelector('#addProjectButton');
 const projectForm = document.querySelector('#addProjectForm')
-const submitTask = document.querySelector('#submitButton');
-const saveTask = document.querySelector('#saveButton');
+const newTaskButton = document.querySelector('#submitButton');
+const saveButton = document.querySelector('#saveButton');
 const allTasks = document.querySelector('#allTasks');
 const windowDisplay = document.querySelector('#addTaskButton');
 const cancelDisplay = document.querySelector('#cancel');
@@ -41,10 +40,10 @@ projectForm.addEventListener('keydown', (e) => {//submits a project
     }
  })
 
-submitTask.addEventListener('click', () => {//adds event listeners to the submit task button
+newTaskButton.addEventListener('click', () => {//adds event listeners to the submit task button
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     callDisplayFunctions(taskValues)
-    //storage function
+    taskValues.saveTaskList(taskList)
 })
 
 function setProjectValues () {
@@ -117,11 +116,11 @@ function setEditButtonListeners (taskList,taskValues,taskLoad,newTask) {//this l
 }
 function setSaveTaskListener(indexOfThisTask,taskValues,taskList,taskLoad,newTask){//adds the save button listener so the changes to the task are saved.
     
-    saveTask.addEventListener('click', function saveTask() {
+    saveButton.addEventListener('click', function saveTask() {
         renderChangedTasks(indexOfThisTask,taskValues,taskList,taskLoad,newTask)
         taskWindow.hide()
+        taskValues.saveTaskList (taskValues)
         this.removeEventListener('click', saveTask);//this immediately removes the listener. This is extremely important so that the only thing changed is the task clicked on.
-         //storage function
     }) 
     
 }
