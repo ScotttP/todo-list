@@ -1,4 +1,14 @@
-let taskList = [];//sets to empty on initial load
+let taskList 
+if(taskList === '' || taskList === null || taskList === undefined){
+    taskList = [];
+
+}else{
+    taskList = localStorage.getItem('savedTaskList')//sets to empty on initial load
+
+}
+  
+//taskList = localStorage.getItem('savedTaskList')
+
 class Tasks {
 
     constructor (taskName,projectFolder, taskDescription, dueDate, priority, taskNotes){
@@ -14,11 +24,12 @@ class Tasks {
         return taskList
     }
     saveTaskList (taskList) {
-        for (let index in taskList){
-            localStorage.setItem('savedTaskList'+index, JSON.stringify(taskList))
-            console.log(taskList)
-        }
-        
+        localStorage.setItem('savedTaskList', taskList)
+        console.log()
+        // for (let index in taskList){
+            
+        //     console.log(localStorage.getItem('savedTaskList'+index, JSON.stringify(taskList)))
+        // }
         
     }
     deleteFromTaskLIst (taskList,index){

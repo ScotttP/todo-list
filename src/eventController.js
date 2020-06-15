@@ -43,7 +43,7 @@ projectForm.addEventListener('keydown', (e) => {//submits a project
 newTaskButton.addEventListener('click', () => {//adds event listeners to the submit task button
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     callDisplayFunctions(taskValues)
-    taskValues.saveTaskList(taskList)
+    
 })
 
 function setProjectValues () {
@@ -69,6 +69,7 @@ function callDisplayFunctions (taskValues) {//sets the task values and calls all
     const projectTasks = document.querySelectorAll('.projects');
 
     taskValues.addToTaskList(taskValues)//adds tasks to all tasks list.
+    taskValues.saveTaskList(taskList)
     const taskLoad = taskLoader(taskList,taskValues);
     taskWindow.buttonDisplay(newTask)
     taskLoad.renderAllTasks(taskList);

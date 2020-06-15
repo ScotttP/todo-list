@@ -1,8 +1,10 @@
 import { taskPopUpWindow } from "./displayController.js"
 import { events } from "./eventController.js"
 import { Projects } from "./projects.js"
-import { Tasks } from "./todo.js"
+import { taskList } from "./todo.js"
+
 let locallyStoredProjects = localStorage.getItem('savedProjectList')
+let locallyStoredTasks = taskList
 
 const load = events()
 
@@ -16,14 +18,12 @@ function localStorageLoad (){
         load.projectLoad.loadProjectListOptions(projectList)
         load.projectLoad.renderProjectCard(projectFunctions,projectList)
     }
-    
-    
+    console.log(locallyStoredTasks)
+    // for (let index in taskList){
+            
+    //     console.log(localStorage.getItem('savedTaskList'+index, JSON.stringify(taskList)))
+    // }
 
-    // //let taskList = locallyStoredTasks
-    // for (let i=0 ;i<=localStorage.length;i++){
-    //     let getTasks = JSON.parse(localStorage.getItem('savedTaskList'+i))
-    //     console.log(getTasks[i].taskName)
-    // }//this doenst work need to fix.
     
 }
 localStorageLoad()
