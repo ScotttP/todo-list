@@ -1,11 +1,4 @@
-let taskList 
-if(taskList === '' || taskList === null || taskList === undefined){
-    taskList = [];
-
-}else{
-    taskList = localStorage.getItem('savedTaskList')//sets to empty on initial load
-
-}
+let taskList = JSON.parse(localStorage.getItem('savedTaskList'));
   
 //taskList = localStorage.getItem('savedTaskList')
 
@@ -20,16 +13,12 @@ class Tasks {
         this.taskNotes = taskNotes
     }
     addToTaskList (taskValues) {
+        console.log(taskList)
         taskList.push(taskValues)
+        localStorage.setItem('savedTaskList', JSON.stringify(taskList))
         return taskList
     }
     saveTaskList (taskList) {
-        localStorage.setItem('savedTaskList', taskList)
-        console.log()
-        // for (let index in taskList){
-            
-        //     console.log(localStorage.getItem('savedTaskList'+index, JSON.stringify(taskList)))
-        // }
         
     }
     deleteFromTaskLIst (taskList,index){

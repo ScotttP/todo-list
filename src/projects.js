@@ -1,15 +1,14 @@
-let projectList = localStorage.getItem('savedProjectList').split(',')
+let projectList = [];
 class Projects {
     
     addToProjectList (name) {//adds project to list 
         projectList.push(name)
+        localStorage.setItem('savedProjectList', projectList)
         return projectList
     }
     
     saveProjectList (projectList) {
-        console.log(projectList)
-        localStorage.setItem('savedProjectList', projectList)
-
+        
     }
 
     deleteFromProjectList (projectList,addProj){//deletes project from list

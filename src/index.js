@@ -4,13 +4,14 @@ import { Projects } from "./projects.js"
 import { taskList } from "./todo.js"
 
 let locallyStoredProjects = localStorage.getItem('savedProjectList')
-let locallyStoredTasks = taskList
+let locallyStoredTasks = JSON.parse(localStorage.getItem('savedTaskList'))
 
 const load = events()
 
 function localStorageLoad (){
     
     if (locallyStoredProjects !== ''){
+        console.log(projectList)
         let projectList = locallyStoredProjects.split(',')
         let projectFunctions = new Projects()
 

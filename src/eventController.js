@@ -67,8 +67,8 @@ function setProjectValues () {
 function callDisplayFunctions (taskValues) {//sets the task values and calls all listener functions
 
     const projectTasks = document.querySelectorAll('.projects');
-
     taskValues.addToTaskList(taskValues)//adds tasks to all tasks list.
+    console.log(taskList)
     taskValues.saveTaskList(taskList)
     const taskLoad = taskLoader(taskList,taskValues);
     taskWindow.buttonDisplay(newTask)
