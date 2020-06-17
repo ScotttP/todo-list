@@ -1,4 +1,4 @@
-let taskList = JSON.parse(localStorage.getItem('savedTaskList'));
+let taskList = [];//JSON.parse(localStorage.getItem('savedTaskList'));
   
 //taskList = localStorage.getItem('savedTaskList')
 
@@ -13,17 +13,17 @@ class Tasks {
         this.taskNotes = taskNotes
     }
     addToTaskList (taskValues) {
-        console.log(taskList)
         taskList.push(taskValues)
         localStorage.setItem('savedTaskList', JSON.stringify(taskList))
         return taskList
     }
-    saveTaskList (taskList) {
-        
+    saveTaskList(){
+        localStorage.setItem('savedTaskList', JSON.stringify(taskList))
     }
     deleteFromTaskLIst (taskList,index){
         taskList.splice(index,1)
-       return taskList
+        localStorage.setItem('savedTaskList', JSON.stringify(taskList))
+        return taskList
     }
     changeTask(taskList,indexOfThisTask){
         let taskNameWindow = document.getElementById('taskName')

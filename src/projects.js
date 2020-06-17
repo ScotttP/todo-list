@@ -6,14 +6,11 @@ class Projects {
         localStorage.setItem('savedProjectList', projectList)
         return projectList
     }
-    
-    saveProjectList (projectList) {
-        
-    }
-
     deleteFromProjectList (projectList,addProj){//deletes project from list
         let projectToDeleteIndex = projectList.indexOf(addProj.textContent);
         projectList.splice(projectToDeleteIndex,1);
+        localStorage.setItem('savedProjectList', projectList)
+        console.log('delete')
         return projectList
     }
     

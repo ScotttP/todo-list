@@ -194,7 +194,6 @@ const projectLoader = () => {//loads projets to the projects area
         deleteProjButton.addEventListener('click', () => {
             console.log(deleteProjButton.value)
             projectFunctions.deleteFromProjectList(projectList,addProj)//deletes from projectList array
-            projectFunctions.saveProjectList(projectList)
             renderProjectCard(projectFunctions,projectList)//renders the new project list
             loadProjectListOptions(projectList)
             

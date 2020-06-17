@@ -53,7 +53,6 @@ function setProjectValues () {
     if(name !== ''){
         if (!projectList.includes(name)){//ensures no project name is duplicated when executing the rest of the code.
             projectFunctions.addToProjectList(name)
-            projectFunctions.saveProjectList(projectList)
             projectLoad.loadProjectListOptions(projectList)
             projectLoad.renderProjectCard(projectFunctions,projectList)
             document.getElementById('addProjectForm').value = '';//clears input of projectForm  
@@ -65,11 +64,10 @@ function setProjectValues () {
     
 }
 function callDisplayFunctions (taskValues) {//sets the task values and calls all listener functions
-
+   
+    
     const projectTasks = document.querySelectorAll('.projects');
     taskValues.addToTaskList(taskValues)//adds tasks to all tasks list.
-    console.log(taskList)
-    taskValues.saveTaskList(taskList)
     const taskLoad = taskLoader(taskList,taskValues);
     taskWindow.buttonDisplay(newTask)
     taskLoad.renderAllTasks(taskList);
@@ -139,7 +137,7 @@ function renderChangedTasks(indexOfThisTask,taskValues,taskList,taskLoad,newTask
     setEditButtonListeners(taskList,taskValues,taskLoad,newTask)
     taskWindow.hide()//hides the task displaysetNewTask()
 }
-return {projectLoad,setProjectValues}
+return {projectLoad,setProjectValues,callDisplayFunctions}
 
 }
 
