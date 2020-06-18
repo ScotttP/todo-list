@@ -1,7 +1,7 @@
-import { taskPopUpWindow, taskLoader } from "./displayController.js"
+import { taskPopUpWindow } from "./displayController.js"
 import { events } from "./eventController.js"
 import { Projects } from "./projects.js"
-import { taskList, Tasks } from "./todo.js"
+import { Tasks } from "./todo.js"
 
 let locallyStoredProjects = localStorage.getItem('savedProjectList')
 let locallyStoredTasksList = JSON.parse(localStorage.getItem('savedTaskList'))
@@ -31,20 +31,10 @@ function localStorageLoad (){
         }
         
         
-    }else{
-        console.log('no storage')
     }
-    
-    // for (let index in taskList){
-            
-    //     console.log(localStorage.getItem('savedTaskList'+index, JSON.stringify(taskList)))
-    // }
-
-    
 }
+
 localStorageLoad()
-
-
 taskPopUpWindow()
 
 

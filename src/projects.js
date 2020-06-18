@@ -10,7 +10,6 @@ class Projects {
         let projectToDeleteIndex = projectList.indexOf(addProj.textContent);
         projectList.splice(projectToDeleteIndex,1);
         localStorage.setItem('savedProjectList', projectList)
-        console.log('delete')
         return projectList
     }
     

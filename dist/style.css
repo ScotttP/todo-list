@@ -2,165 +2,223 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+/*ELEMENTS*/
+aside{
+    min-width: 200px;
+    width: 20%;
+    height: 90vh;
+    background-color: #444141;
+    margin-left: 5%;
+}
+aside > h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+@media (min-width: 375px){
+    aside{
+        width: 150px;
+    
+    }
+}
+body{
+    background-color:#363636;
+    color: white;
+}
+i:hover{
+    cursor: pointer;
+}
+header{
+    background-color: #1f1f1f;
+    color: #1DB954;
+    height: 4vh;
+}
+ul{
+    width: 100%;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 90vh;
+    border: 1px solid blue;
+    margin-right: 5%;
+}
+main > h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+td{
+    width: 15vw;
+} 
+tr {
+    border: 3px black solid;
+} 
+/*CLASSES*/
+
+.addClick:hover{
+    cursor: pointer;
+}
+.addProjectContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+}
+.addTaskContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
 }
 .appContainer{
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
-
 .contentContainer {
     display: flex;
     margin-top: 3%;
     flex-grow: 1;
 }
-    aside{
-        min-width: 100px;
-        width: 20%;
-        height: 100%;
-        border: 1px solid red;
-    }
+.deleteTask:hover{
+    cursor: pointer;
+}
+.icon-edit{
+    height: 50px;
+    width: 50px;
+    color: black;
+ }
+.listTasksContainer{
+    width: 100%;
+}
+.projects{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 2px solid #1f1f1f;
+   margin-top: 3%;
+   width: 100%;
 
-    aside > h2 {
-        text-align: center;
-    }
-    .sideBarContainer{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+}
+.projects:hover{
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.projectList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px 10px 0px;
+    line-height: 2rem;
+}
+.projectList > li {
+    list-style-type: none;
+}
+.sideBarContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+.todoItem{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+/*ID'S*/
+#addProjectButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+#addProjectButton:hover {
+    border: 2px solid #1DB954;
+    border-radius: 100%;
+    color: #1DB954
+}    
+#addprojectForm{
+    width: 120px;
+}
+@media (max-width: 955px){
+    #addProjectForm{
+        width: 80px;
         margin: 5%;
     }
-        .projectList{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0px 10px 0px;
-            line-height: 2rem;
-        }
-        .projectList > li {
-            list-style-type: none;
-        }
-    .addProjectContainer {
-        display: flex;
-        align-items: center;
-    }    
-        @media (max-width: 955px){
-            #addProjectForm{
-                width: 80px;
-                margin: 5%;
-            }
-        }
-        #addprojectForm{
-            width: 120px;
-        }
+}
+#addTaskWindowContainer{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color:black;
+}
+#allTasks{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #1f1f1f;
+}
+#allTasks:hover {
+    cursor: pointer;
+    border: 3px solid #1f1f1f;
+    border-radius: 10px;
+}
+#cancel{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    background-color: gray;
+    color: white;
+}
+#cancel:hover {
+    cursor: pointer;
+}
+#deleteProjButton {
+    font-size: 1rem;
+    margin-left: 5px;
 
-
-    main{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 80%;
-        height: 500px;
-        border: 1px solid blue;
-        margin-right: 5%;
-    }
-    main > h3 {
-        text-align: center;
-    }  
-
-    .listTasksContainer{
-        width: 100%;
-        
-    }
-        .todoItem{
-            display: flex;
-            align-items: center;
-            list-style-type: none;
-        }
-
-        td{
-            width: 15vw;
-        }
-
-        .addTaskContainer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1rem 0 1rem 0;
-        }  
-
-        .addClick:hover{
-            cursor: pointer;
-        }
-        #addTaskWindowContainer{
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-        #taskWindow {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #fefefe;
-            margin: auto;
-            border: 1px solid #888;
-            width: 45%;
-            max-width: 350px;
-        }
-        #tasksForm{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-top: 5%;
-        }
-        #cancel{
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            width: 100%;
-            background-color: gray;
-            color: white;
-        }
-        #cancel:hover {
-            cursor: pointer;
-        }
-
-        #deleteProjButton {
-            font-size:10px;
-            margin-left: 5px;
-        }
-
-        #deleteProjButton:hover {
-            cursor: pointer;
-            color: red;
-        }
-        .projects:hover{
-            cursor: pointer;
-        }
-        #allTasks:hover {
-            cursor: pointer;
-        }
-        tr {
-            border: 3px black solid;
-        }
-        .edit:hover{
-            cursor: pointer;
-            background-color: blue;
-        }
-
-        
-
-
-
+}
+#deleteProjButton:hover {
+    cursor: pointer;
+    color: red;
+}
+#tasksForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+#taskWindow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 45%;
+    max-width: 350px;
+}
+#text{
+    margin-left: 5px;
+}
     

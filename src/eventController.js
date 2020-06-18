@@ -2,6 +2,7 @@ import { Tasks,taskList } from "./todo.js"
 import { Projects,projectList } from "./projects.js"
 import {taskPopUpWindow,projectLoader,taskLoader} from "./displayController.js"
 import {taskDetailsWindow} from "./displayController.js"
+
 const events = () => {
 
 let newTask // this controls what
@@ -85,7 +86,6 @@ function setAllTasksListener (taskLoad) {//this listener displays all of the pro
     allTasks.addEventListener('click', () => {
         let display = true;
         taskLoad.clearOrDisplayTasks(display)
-        //storage function
     })
 
 }
