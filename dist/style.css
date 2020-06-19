@@ -7,7 +7,7 @@
 
 /*ELEMENTS*/
 aside{
-    min-width: 200px;
+    /* min-width: 200px; */
     width: 20%;
     height: 90vh;
     background-color: #444141;
@@ -16,12 +16,6 @@ aside{
 aside > h2 {
     text-align: center;
     margin-top: 20px;
-}
-@media (min-width: 375px){
-    aside{
-        width: 150px;
-    
-    }
 }
 body{
     background-color:#363636;
@@ -34,6 +28,7 @@ header{
     background-color: #1f1f1f;
     color: #1DB954;
     height: 4vh;
+    width: 100%;
 }
 ul{
     width: 100%;
@@ -44,7 +39,7 @@ main{
     align-items: center;
     width: 80%;
     height: 90vh;
-    border: 1px solid blue;
+    background-color: #272626;
     margin-right: 5%;
 }
 main > h2 {
@@ -55,7 +50,9 @@ td{
     width: 15vw;
 } 
 tr {
-    border: 3px black solid;
+    margin-bottom: 5px;
+    border-bottom: 3px #1f1f1f solid;
+    padding: 5px;
 } 
 /*CLASSES*/
 
@@ -66,6 +63,7 @@ tr {
     display: flex;
     align-items: center;
     margin-top: 10%;
+    max-width: 177px;
 }
 .addTaskContainer {
     display: flex;
@@ -77,20 +75,23 @@ tr {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    width: 100%;
 }
 .contentContainer {
     display: flex;
     margin-top: 3%;
     flex-grow: 1;
+    width: 100%;
 }
 .deleteTask:hover{
     cursor: pointer;
+    background-color: red;
 }
 .icon-edit{
     height: 50px;
     width: 50px;
     color: black;
- }
+}
 .listTasksContainer{
     width: 100%;
 }
@@ -101,7 +102,8 @@ tr {
    border-bottom: 2px solid #1f1f1f;
    margin-top: 3%;
    width: 100%;
-
+   padding: 2%;
+   transition: 0.5s;
 }
 .projects:hover{
     background-color: #1f1f1f;
@@ -140,20 +142,40 @@ tr {
     width: 25px;
     margin-right: 10px;
     font-size: 1.5rem;
+    transition: 0.5s;
 }
 #addProjectButton:hover {
     border: 2px solid #1DB954;
     border-radius: 100%;
-    color: #1DB954
+    color: #1DB954;
 }    
-#addprojectForm{
-    width: 120px;
+#addProjectForm{
+    width: 12vw;
+    height: 1.7rem;
+    padding: 2%;
+    outline: none;
+    background-color: rgb(182, 180, 180);
+    border: none;
+    border-radius: 15px;
 }
 @media (max-width: 955px){
     #addProjectForm{
         width: 80px;
         margin: 5%;
     }
+}
+#addTaskButton{
+    width: 5vw;
+    height: 3vh;
+    background-color: #262626;
+    border: 2px solid white;
+    color: white;
+    transition: .5s;
+}
+#addTaskButton:hover{
+    background-color: #262626;
+    border: 2px solid #1DB954;
+    color: #1DB954;
 }
 #addTaskWindowContainer{
     display: none; /* Hidden by default */
@@ -174,11 +196,13 @@ tr {
     justify-content: center;
     align-items: center;
     border-bottom: 3px solid #1f1f1f;
+    transition: 0.5s;
 }
 #allTasks:hover {
     cursor: pointer;
-    border: 3px solid #1f1f1f;
+    background-color: #1f1f1f;
     border-radius: 10px;
+    color: #1DB954;
 }
 #cancel{
     display: flex;
@@ -190,6 +214,10 @@ tr {
 }
 #cancel:hover {
     cursor: pointer;
+}
+#deleteAndEditTd{
+    display: flex;
+    justify-content: space-between;
 }
 #deleteProjButton {
     font-size: 1rem;

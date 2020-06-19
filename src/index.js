@@ -20,12 +20,14 @@ function localStorageLoad (){
     }
     if(JSON.parse(localStorage.getItem('savedTaskList'))){
         for (let index in locallyStoredTasksList){
+
             taskName.value = locallyStoredTasksList[index].taskName
             projectFolder.value = locallyStoredTasksList[index].projectFolder
             taskDescription.value = locallyStoredTasksList[index].taskDescription
             dueDate.value = locallyStoredTasksList[index].dueDate
             priority.value = locallyStoredTasksList[index].priority
             taskNotes.value = locallyStoredTasksList[index].taskNotes
+            
             let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
             load.callDisplayFunctions(taskValues)
         }

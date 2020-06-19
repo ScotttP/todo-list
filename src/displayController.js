@@ -96,8 +96,8 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                     tr.removeChild(td)
                 }
             }
-            tr.appendChild(edit)
-            addDeleteTaskAndListener(tr,index)
+            //tr.appendChild(edit)
+            addDeleteTaskAndListener(tr,index,edit)
             tBody.appendChild(tr)
             
         } 
@@ -111,7 +111,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             }
         }else if (display === true){// if the display is true show all of the tasks.
             for (let i = 0; i<allTaskCards.length;++i){
-                allTaskCards[i].style.display = 'block'
+                allTaskCards[i].style.display = 'flex'
             }
         }
 
@@ -130,8 +130,9 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         }
     
     }
-    function addDeleteTaskAndListener (tr,index) { //adds the delete button and listener which deletes the specific task in task list
+    function addDeleteTaskAndListener (tr,index,edit) { //adds the delete button and listener which deletes the specific task in task list
         let deleteTd = document.createElement('td')
+        deleteTd.id = 'deleteAndEditTd'
         let deleteTask = document.createElement('i')
         deleteTask.setAttribute('type','icon')
         deleteTask.setAttribute('class','fa fa-trash')
@@ -141,7 +142,9 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             taskValues.deleteFromTaskLIst(taskList,index)
             renderAllTasks(taskList)
         })
+        deleteTd.appendChild(edit)//adds the edit button in the same td element
         deleteTd.appendChild(deleteTask)
+
         tr.appendChild(deleteTd)
     }
     return {
