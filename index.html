@@ -41,29 +41,27 @@
                 </div>
                 <div id="addTaskWindowContainer">
                     
-                    <div id="taskWindow">
-                        <span id="cancel">x</span>
+                    <div id="taskWindow" >
+                        <header id="cancelBar"> <span id="cancel">x</span></header>
                         <form id="tasksForm">
                             <label>Task Name:</label>
-                                <input id="taskName" type="text">
+                                <input class ="windowInputFields" id="taskName" type="text">
                             <label>Project Folder:</label>
-                                <select id="projectFolder">
-                                
-                                </select>
+                                <select class ="windowSelectFields" id="projectFolder"></select>
                             <label>Description:</label>
-                                <input id="taskDescription" type="text">
+                                <input class ="windowInputFields" id="taskDescription" type="text">
                             <label>Due Date:</label>
-                                <input id="dueDate" type="date">
+                                <input class ="windowInputFields" id="dueDate" type="date">
                             <label>Priority:</label>
-                                <select id="priority">
+                                <select class ="windowSelectFields" id="priority">
                                     <option id ="low" value="low">Low</option>
                                     <option id ="medium" value="medium">Medium</option>
                                     <option id ="high" value="high">High</option>
                                 </select>
                             <label>Notes:</label>
                             <textarea id="taskNotes" type="text"></textarea>
-                            <button id="saveButton" type="button">Save</button>
-                            <button id="submitButton" type="button">New Task</button>
+                            <button class="taskWindowButtons" id="saveButton" type="button">Save</button>
+                            <button class="taskWindowButtons" id="submitButton" type="button">New Task</button>
                         </form>
                     </div>
                 </div>
