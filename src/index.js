@@ -13,7 +13,7 @@ function localStorageLoad (){
     if(localStorage.getItem('savedProjectList')){
         
         let projectList = locallyStoredProjects.split(',')
-        let projectFunctions = new Projects()
+        let projectFunctions = new Projects(projectList)
 
         load.projectLoad.loadProjectListOptions(projectList)
         load.projectLoad.renderProjectCard(projectFunctions,projectList)

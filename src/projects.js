@@ -1,7 +1,8 @@
-let projectList = [];
+let projectList = localStorage.getItem('savedProjectList').split(",")
 class Projects {
     
     addToProjectList (name) {//adds project to list 
+        
         projectList.push(name)
         localStorage.setItem('savedProjectList', projectList)
         return projectList

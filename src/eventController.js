@@ -44,7 +44,6 @@ projectForm.addEventListener('keydown', (e) => {//submits a project
 newTaskButton.addEventListener('click', () => {//adds event listeners to the submit task button
     let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
     callDisplayFunctions(taskValues)
-    
 })
 
 function setProjectValues () {

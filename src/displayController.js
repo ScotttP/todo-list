@@ -71,7 +71,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             tr.setAttribute('name', `${taskList[index].projectFolder}TableCard`)
 
             let edit = document.createElement('i')
-            edit.classList = 'fa fa-pencil-square-o'
+            edit.classList = 'fa fa-pencil-square-o editButton'
             edit.setAttribute('aria-hidden','true')
             edit.setAttribute('name','editButton')
             edit.id = `${index}`
@@ -79,6 +79,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
+            checkBox.id = 'checkBox'
             checkBox.setAttribute('type','checkbox')
 
             
@@ -119,7 +120,6 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
     function renderProjectsTasks (taskList,li) {//based on which project name is clicked, it displays all the tasks with that specific project folder
         let display = false
         clearOrDisplayTasks(display)
-
         for (let index in taskList){   
             let project = document.getElementsByName(`${taskList[index].projectFolder}TableCard`)
             if (taskList[index].projectFolder === li.id){
@@ -168,7 +168,7 @@ const projectLoader = () => {//loads projets to the projects area
             
             let addProj = document.createElement('li');
             addProj.className = 'projects';
-            addProj.id = project;
+            addProj.id = projectList[project];
             addProj.textContent = projectList[project];
             projectListDiv.appendChild(addProj)
             addDeleteButtonAndListener(addProj,project,projectFunctions,projectList)
@@ -181,7 +181,7 @@ const projectLoader = () => {//loads projets to the projects area
         
         for (let projects in projectList){
             let option = document.createElement('option');
-            option.value= projects;
+            option.value= projectList[projects];
             option.text = projectList[projects];
             projectFolder.appendChild(option)
         }

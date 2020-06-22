@@ -1,6 +1,4 @@
-let taskList = [];//JSON.parse(localStorage.getItem('savedTaskList'));
-  
-//taskList = localStorage.getItem('savedTaskList')
+let taskList = [];
 
 class Tasks {
 
