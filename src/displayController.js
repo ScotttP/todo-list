@@ -79,7 +79,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
         
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
-            checkBox.id = 'checkBox'
+            checkBox.className = 'checkBox'
             checkBox.setAttribute('type','checkbox')
 
             
@@ -97,7 +97,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                     tr.removeChild(td)
                 }
             }
-            //tr.appendChild(edit)
+            checkBoxFormatting()
             addDeleteTaskAndListener(tr,index,edit)
             tBody.appendChild(tr)
             
@@ -147,10 +147,20 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 
         tr.appendChild(deleteTd)
     }
+    function checkBoxFormatting (){
+        let completed = document.getElementsByClassName('checkBox')
+        console.log(completed.checked)
+        if (completed.checked === true){
+            console.log('true')
+        }else if(completed.checked === false){
+            console.log('false')
+        }
+    }
     return {
         renderAllTasks,
         renderProjectsTasks,
-        clearOrDisplayTasks
+        clearOrDisplayTasks,
+        checkBoxFormatting
     }
 }
 
@@ -201,9 +211,11 @@ const projectLoader = () => {//loads projets to the projects area
             
          })
     }
+    
     return {
         renderProjectCard,
-        loadProjectListOptions
+        loadProjectListOptions,
+
         
     }
     

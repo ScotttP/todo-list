@@ -117,11 +117,17 @@ tr {
     flex-grow: 1;
     width: 100%;
 }
-.deleteTask:hover{
+.deleteTask{
     color: red;
 }
-.editButton:hover {
+.deleteTask:hover {
     color: red;
+}
+.editButton {
+    transition: 0.3s;
+}
+.editButton:hover {
+    color: #1DB954;
 }
 .icon-edit{
     height: 50px;
@@ -289,9 +295,33 @@ tr {
     cursor: pointer;
     color: red;
 }
-#checkBox{
-    background-color: #262626;
-    
+.checkBox{
+    -webkit-appearance: none;
+	background-color: #272727;
+	border: 2px solid #1DB954;
+	padding: 7px;
+	border-radius: 3px;
+	display: inline-block;
+    position: relative;
+    outline: none;
+}
+
+.checkBox:checked{
+    background-color: #272727;
+	border: 2px solid #1DB954;
+	color: #1DB954;
+}
+.checkBox:checked:after{
+    outline: none;
+    content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: -3px;
+    left: 3px;
+	color: #1DB954;
+}
+.checkBox:hover{
+    cursor: pointer;
 }
 #deleteAndEditTd{
     display: flex;

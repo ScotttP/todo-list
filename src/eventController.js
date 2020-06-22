@@ -14,6 +14,7 @@ const saveButton = document.querySelector('#saveButton');
 const allTasks = document.querySelector('#allTasks');
 const windowDisplay = document.querySelector('#addTaskButton');
 const cancelDisplay = document.querySelector('#cancel');
+
 const taskWindow = taskPopUpWindow();
 const projectLoad = projectLoader();//assigns the projectLoad factory function to a variable
 
@@ -74,6 +75,7 @@ function callDisplayFunctions (taskValues) {//sets the task values and calls all
     setAllTasksListener(taskLoad);
     setProjectTasksListener(projectTasks,taskLoad)
     setEditButtonListeners(taskList,taskValues,taskLoad,newTask)
+    setCheckBoxListeners(taskLoad)
     
     taskWindow.clearValues()
     taskWindow.hide()//hides the task displaysetNewTask()
@@ -121,6 +123,14 @@ function setSaveTaskListener(indexOfThisTask,taskValues,taskList,taskLoad,newTas
         this.removeEventListener('click', saveTask);//this immediately removes the listener. This is extremely important so that the only thing changed is the task clicked on.
     }) 
     
+}
+function setCheckBoxListeners(taskLoad){
+    const checkBox = document.querySelectorAll('.checkBox')
+    checkBox.forEach((input)=>{
+        input.addEventListener('click', () => {
+            taskLoad.checkBoxFormatting()
+        })
+    })
 }
 
 function taskWindowFormDisplay (taskDetails,taskWindow,indexOfThisTask) {//shows the values of the selected task in the taskWindow form dispaly
