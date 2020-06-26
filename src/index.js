@@ -30,7 +30,9 @@ function localStorageLoad (){
             
             let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
             load.callDisplayFunctions(taskValues)
+            console.log(localStorage.getItem('inputChecked'))
         }
+    
         
         
     }

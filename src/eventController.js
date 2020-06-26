@@ -125,10 +125,10 @@ function setSaveTaskListener(indexOfThisTask,taskValues,taskList,taskLoad,newTas
     
 }
 function setCheckBoxListeners(taskLoad){
-    const checkBox = document.querySelectorAll('.checkBox')
+    let checkBox = document.querySelectorAll('.checkBox')
     checkBox.forEach((input)=>{
         input.addEventListener('click', () => {
-            taskLoad.checkBoxFormatting()
+            taskLoad.checkBoxFormatting(input)
         })
     })
 }
