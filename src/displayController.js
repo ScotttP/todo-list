@@ -80,6 +80,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
             let checkTd = document.createElement('td')
             let checkBox = document.createElement('input')
             checkBox.className = 'checkBox'
+            checkBox.id = `${index}`
             checkBox.setAttribute('type','checkbox')
            
 
@@ -148,11 +149,19 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 
         tr.appendChild(deleteTd)
     }
-    function checkBoxFormatting (input){
-        if (input.checked === true){
-            console.log(input.innerHTML)
-        }
-        localStorage.setItem('inputChecked', input.checked)
+    function checkBoxFormatting (checkBox,e){
+        // checkBox.forEach((input)=>{
+        //     if (input.checked === true){
+                
+        //         //localStorage.setItem('inputChecked', input.checked)
+        //     }else{
+        //         //console.log(input[0])
+        //         //localStorage.setItem('inputChecked', input.checked)
+        //     }
+        // })
+        
+
+        
     }
     return {
         renderAllTasks,

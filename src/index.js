@@ -11,10 +11,8 @@ const load = events()
 function localStorageLoad (){
     
     if(localStorage.getItem('savedProjectList')){
-        
         let projectList = locallyStoredProjects.split(',')
         let projectFunctions = new Projects(projectList)
-
         load.projectLoad.loadProjectListOptions(projectList)
         load.projectLoad.renderProjectCard(projectFunctions,projectList)
     }
@@ -30,12 +28,13 @@ function localStorageLoad (){
             
             let taskValues = new Tasks (taskName.value,projectFolder.value,taskDescription.value, dueDate.value, priority.value, taskNotes.value);
             load.callDisplayFunctions(taskValues)
-            console.log(localStorage.getItem('inputChecked'))
+            checkMarkLoad()
+            
         }
-    
-        
-        
     }
+}
+function checkMarkLoad (){
+   // console.log(JSON.parse(localStorage.getItem('inputChecked')))
 }
 
 localStorageLoad()

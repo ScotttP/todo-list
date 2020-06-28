@@ -1,8 +1,13 @@
-let projectList = localStorage.getItem('savedProjectList').split(",")
+let projectList;
+if (localStorage.length === 0){
+    projectList = []
+}else{
+    projectList = localStorage.getItem('savedProjectList').split(",")
+}
 class Projects {
     
     addToProjectList (name) {//adds project to list 
-        
+        console.log(projectList)
         projectList.push(name)
         localStorage.setItem('savedProjectList', projectList)
         return projectList

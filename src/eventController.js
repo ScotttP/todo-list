@@ -76,6 +76,7 @@ function callDisplayFunctions (taskValues) {//sets the task values and calls all
     setProjectTasksListener(projectTasks,taskLoad)
     setEditButtonListeners(taskList,taskValues,taskLoad,newTask)
     setCheckBoxListeners(taskLoad)
+    taskLoad.checkBoxFormatting()
     
     taskWindow.clearValues()
     taskWindow.hide()//hides the task displaysetNewTask()
@@ -119,17 +120,25 @@ function setSaveTaskListener(indexOfThisTask,taskValues,taskList,taskLoad,newTas
     saveButton.addEventListener('click', function saveTask() {
         renderChangedTasks(indexOfThisTask,taskValues,taskList,taskLoad,newTask)
         taskWindow.hide()
-        taskValues.saveTaskList (taskValues)
+        taskValues.saveTaskList(taskValues)
         this.removeEventListener('click', saveTask);//this immediately removes the listener. This is extremely important so that the only thing changed is the task clicked on.
     }) 
     
 }
 function setCheckBoxListeners(taskLoad){
     let checkBox = document.querySelectorAll('.checkBox')
+    for (let input of checkBox){
+        console.log(input.checked)
+    }
     checkBox.forEach((input)=>{
-        input.addEventListener('click', () => {
-            taskLoad.checkBoxFormatting(input)
+        // console.log(input.checked)
+        input.addEventListener('click', (e) => {
+            localStorage.setItem('inputChecked', e.target.checked)
+            taskLoad.checkBoxFormatting(checkBox,e)
+            // console.log(e.target.checked)
+            // console.log(JSON.parse(localStorage.getItem('inputChecked')))
         })
+       
     })
 }
 
