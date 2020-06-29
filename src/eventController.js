@@ -75,8 +75,6 @@ function callDisplayFunctions (taskValues) {//sets the task values and calls all
     setAllTasksListener(taskLoad);
     setProjectTasksListener(projectTasks,taskLoad)
     setEditButtonListeners(taskList,taskValues,taskLoad,newTask)
-    setCheckBoxListeners(taskLoad)
-    taskLoad.checkBoxFormatting()
     
     taskWindow.clearValues()
     taskWindow.hide()//hides the task displaysetNewTask()
@@ -125,23 +123,6 @@ function setSaveTaskListener(indexOfThisTask,taskValues,taskList,taskLoad,newTas
     }) 
     
 }
-function setCheckBoxListeners(taskLoad){
-    let checkBox = document.querySelectorAll('.checkBox')
-    for (let input of checkBox){
-        console.log(input.checked)
-    }
-    checkBox.forEach((input)=>{
-        // console.log(input.checked)
-        input.addEventListener('click', (e) => {
-            localStorage.setItem('inputChecked', e.target.checked)
-            taskLoad.checkBoxFormatting(checkBox,e)
-            // console.log(e.target.checked)
-            // console.log(JSON.parse(localStorage.getItem('inputChecked')))
-        })
-       
-    })
-}
-
 function taskWindowFormDisplay (taskDetails,taskWindow,indexOfThisTask) {//shows the values of the selected task in the taskWindow form dispaly
     newTask = false
     taskWindow.buttonDisplay(newTask)

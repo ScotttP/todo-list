@@ -85,7 +85,7 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
            
 
             
-            checkTd.appendChild(checkBox)
+            //checkTd.appendChild(checkBox)
             tr.appendChild(checkTd)
             
 
@@ -99,7 +99,6 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
                     tr.removeChild(td)
                 }
             }
-            //checkBoxFormatting(input)
             addDeleteTaskAndListener(tr,index,edit)
             tBody.appendChild(tr)
             
@@ -149,25 +148,10 @@ const taskLoader = (taskList,taskValues) => {//loads tasks in the tasks area.
 
         tr.appendChild(deleteTd)
     }
-    function checkBoxFormatting (checkBox,e){
-        // checkBox.forEach((input)=>{
-        //     if (input.checked === true){
-                
-        //         //localStorage.setItem('inputChecked', input.checked)
-        //     }else{
-        //         //console.log(input[0])
-        //         //localStorage.setItem('inputChecked', input.checked)
-        //     }
-        // })
-        
-
-        
-    }
     return {
         renderAllTasks,
         renderProjectsTasks,
         clearOrDisplayTasks,
-        checkBoxFormatting
     }
 }
 
